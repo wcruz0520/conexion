@@ -5,7 +5,7 @@ Module SubMain
     Public cnSAP As ConnectSAP
     Public guardaLog As Log
     Public NombreClase As String
-    Public BaseForm As Form1
+    Public BaseForm As PrincipalForm
 
     <STAThread()>
     Sub Main()
@@ -16,7 +16,7 @@ Module SubMain
         cnSAP = New ConnectSAP(oCompany)
         guardaLog = New Log
         NombreClase = "SubMain"
-        BaseForm = New Form1
+        BaseForm = New PrincipalForm
 
         If cnSAP.conectSAP() Then
 
