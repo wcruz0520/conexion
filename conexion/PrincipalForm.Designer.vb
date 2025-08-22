@@ -56,10 +56,12 @@ Partial Class PrincipalForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(979, 490)
         Me.Controls.Add(Me.btnSiguiente)
         Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.panelPrincipal)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "PrincipalForm"
         Me.Text = "Form1"
         Me.ResumeLayout(False)

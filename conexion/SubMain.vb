@@ -6,6 +6,7 @@ Module SubMain
     Public guardaLog As Log
     Public NombreClase As String
     Public BaseForm As PrincipalForm
+    Public SelectedTypeObject As String
 
     <STAThread()>
     Sub Main()
