@@ -2,11 +2,10 @@ C:\Users\William\source\repos\conexion\conexion\bin\x64\Debug\conexion.exe.confi
 C:\Users\William\source\repos\conexion\conexion\bin\x64\Debug\conexion.exe
 C:\Users\William\source\repos\conexion\conexion\bin\x64\Debug\conexion.pdb
 C:\Users\William\source\repos\conexion\conexion\bin\x64\Debug\conexion.xml
-C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.vbproj.AssemblyReference.cache
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.Resources.resources
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.vbproj.GenerateResource.cache
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.vbproj.CoreCompileInputs.cache
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.exe
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.xml
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.pdb
-C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.Form1.resources
+C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.PrincipalForm.resources
