@@ -8,6 +8,7 @@ Namespace Views
         Private rbDatosMaestros As RadioButton
         Private rbDatosTransaccionales As RadioButton
         Private rbDatosConfiguracion As RadioButton
+        Public selectoption As String
 
         Public Sub New()
             InitializeComponent()
@@ -64,9 +65,20 @@ Namespace Views
             Me.Controls.Add(rbDatosTransaccionales)
             Me.Controls.Add(rbDatosConfiguracion)
 
-            SubMain.SelectedTypeObject = rbDatosMaestros.Text
+            If rbDatosConfiguracion.Checked Then
+                SubMain.SelectedTypeObject = rbDatosConfiguracion.Text
+            End If
+
+            If rbDatosMaestros.Checked Then
+                SubMain.SelectedTypeObject = rbDatosMaestros.Text
+            End If
+
+            If rbDatosTransaccionales.Checked Then
+                SubMain.SelectedTypeObject = rbDatosTransaccionales.Text
+            End If
 
             Me.ResumeLayout(False)
+
         End Sub
 
         Private Sub RadioButton_CheckedChanged(sender As Object, e As EventArgs)

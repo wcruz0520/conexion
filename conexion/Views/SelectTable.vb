@@ -13,7 +13,7 @@ Namespace Views
             Me.SuspendLayout()
             Me.BackColor = Color.LightBlue
             Dim lbl As New Label()
-            lbl.Text = "Seleccionar Tabla"
+            lbl.Text = $"Paso 2: Seleccionar tabla tipo {SubMain.SelectedTypeObject}"
             lbl.Dock = DockStyle.Fill
             lbl.TextAlign = ContentAlignment.MiddleCenter
             Me.Controls.Add(lbl)
