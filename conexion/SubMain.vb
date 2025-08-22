@@ -22,7 +22,7 @@ Module SubMain
 
             If oCompany.Connected Then
                 guardaLog.RegistrarLOG(NombreClase, 1, String.Format("Conexion SAP exitosa, CompanyName={0} ,DataBase={1}  ", oCompany.CompanyName, oCompany.CompanyDB))
-                BaseForm.Text = String.Format("Conexion SAP exitosa, CompanyName={0} ,DataBase={1}  ", oCompany.CompanyName, oCompany.CompanyDB)
+                BaseForm.Text = String.Format("Conectado a: {1}", oCompany.CompanyName, oCompany.CompanyDB)
                 'BaseForm.Show()
             End If
         Else
