@@ -17,55 +17,65 @@ Namespace Views
         Private Sub InitializeComponent()
             Me.SuspendLayout()
             Me.BackColor = Color.White
-            Dim lbl As New Label()
-            Dim Sublbl As New Label()
+            'Dim lbl As New Label()
+            'Dim Sublbl As New Label()
 
-            'Titulo 
+            ' Panel para título y subtítulo
+            Dim panelHeader As New Panel()
+            panelHeader.Dock = DockStyle.Top
+            panelHeader.Height = 70
+            panelHeader.Padding = New Padding(20, 20, 20, 10)
+            panelHeader.BackColor = Color.White 'Color.FromArgb(46, 254, 132)
+
+            Dim lbl As New Label()
             lbl.Text = "Paso 1:  Seleccionar Tipo Objeto"
             lbl.Font = New Font("Calibri", 15, FontStyle.Bold)
-            'lbl.Dock = DockStyle.Top
-            lbl.Location = New Point(20, 20)
-            lbl.TextAlign = ContentAlignment.MiddleLeft
             lbl.AutoSize = True
-            'lbl.Height = 30
-            Me.Controls.Add(lbl)
+            lbl.Location = New Point(20, 15)
+            panelHeader.Controls.Add(lbl)
 
-            'SubTitulo
+            Dim Sublbl As New Label()
             Sublbl.Text = "Seleccionar el tipo de data que quiere importar. Para continuar dar clic en ""Siguiente"""
             Sublbl.Font = New Font("Calibri", 11, FontStyle.Regular)
-            'Sublbl.Dock = DockStyle.Top
-            Sublbl.Location = New Point(20, 40)
-            Sublbl.TextAlign = ContentAlignment.MiddleLeft
             Sublbl.AutoSize = True
-            'Sublbl.Height = 30
-            Me.Controls.Add(Sublbl)
+            Sublbl.Location = New Point(20, 35)
+            panelHeader.Controls.Add(Sublbl)
+
+            ' Panel para el resto de los elementos
+            Dim panelContent As New Panel()
+            panelContent.Dock = DockStyle.Fill
+            panelContent.Padding = New Padding(50, 20, 50, 20)
+            panelContent.BackColor = Color.LightGray
 
             rbDatosMaestros = New RadioButton()
             rbDatosMaestros.AutoSize = True
-            rbDatosMaestros.Text = "Datos Maestros"
-            rbDatosMaestros.Font = New Font("Calibri", 12, FontStyle.Regular)
-            rbDatosMaestros.Location = New Point(50, 100)
+            rbDatosMaestros.Text = "Datos Maestros (Por ejemplo, artículos, socios de negocio, entre otros)"
+            rbDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
+            rbDatosMaestros.Location = New Point(20, 40)
             rbDatosMaestros.Checked = True
 
             rbDatosTransaccionales = New RadioButton()
             rbDatosTransaccionales.AutoSize = True
-            rbDatosTransaccionales.Text = "Datos transaccionales"
-            rbDatosTransaccionales.Font = New Font("Calibri", 12, FontStyle.Regular)
-            rbDatosTransaccionales.Location = New Point(50, 130)
+            rbDatosTransaccionales.Text = "Datos transaccionales (Por ejemplo, facturas de ventas, facturas de compras, entre otros)"
+            rbDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
+            rbDatosTransaccionales.Location = New Point(20, 70)
 
             rbDatosConfiguracion = New RadioButton()
             rbDatosConfiguracion.AutoSize = True
-            rbDatosConfiguracion.Text = "Datos de configuración"
-            rbDatosConfiguracion.Font = New Font("Calibri", 12, FontStyle.Regular)
-            rbDatosConfiguracion.Location = New Point(50, 160)
+            rbDatosConfiguracion.Text = "Datos de configuración (Por ejemplo, códigos de impuestos, bancos, entre otros)"
+            rbDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
+            rbDatosConfiguracion.Location = New Point(20, 100)
 
             AddHandler rbDatosMaestros.CheckedChanged, AddressOf RadioButton_CheckedChanged
             AddHandler rbDatosTransaccionales.CheckedChanged, AddressOf RadioButton_CheckedChanged
             AddHandler rbDatosConfiguracion.CheckedChanged, AddressOf RadioButton_CheckedChanged
 
-            Me.Controls.Add(rbDatosMaestros)
-            Me.Controls.Add(rbDatosTransaccionales)
-            Me.Controls.Add(rbDatosConfiguracion)
+            panelContent.Controls.Add(rbDatosMaestros)
+            panelContent.Controls.Add(rbDatosTransaccionales)
+            panelContent.Controls.Add(rbDatosConfiguracion)
+
+            Me.Controls.Add(panelContent)
+            Me.Controls.Add(panelHeader)
 
             If rbDatosConfiguracion.Checked Then
                 SubMain.SelectedTypeObject = rbDatosConfiguracion.Text

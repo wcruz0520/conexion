@@ -105,6 +105,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ImportDataWizard.Designer.vb">
+      <DependentUpon>ImportDataWizard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\ImportDataWizard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaces\ProcessForm.Designer.vb">
       <DependentUpon>ProcessForm.vb</DependentUpon>
     </Compile>
@@ -148,6 +160,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Interfaces\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\ImportDataWizard.resx">
+      <DependentUpon>ImportDataWizard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrincipalForm.resx">
       <DependentUpon>PrincipalForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -174,8 +192,11 @@
     <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Recursos\LogoV3.ico" />
     <None Include="Recursos\LogoV2.ico" />
     <None Include="Recursos\LogoV1.ico" />
+    <None Include="Recursos\connect.png" />
+    <None Include="Recursos\import.png" />
     <Content Include="Recursos\LogoV1.png" />
     <None Include="Resources\LogoV1.png" />
   </ItemGroup>

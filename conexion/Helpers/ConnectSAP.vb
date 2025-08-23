@@ -24,16 +24,21 @@ Public Class ConnectSAP
 
             oCompany.DbServerType = ConfigurationManager.AppSettings("DevServerType")
             oCompany.UseTrusted = ConfigurationManager.AppSettings("UseTrusted")
-            oCompany.CompanyDB = ConfigurationManager.AppSettings("DevDatabase")
-            oCompany.UserName = ConfigurationManager.AppSettings("DevSBOUser")
-            oCompany.Password = ConfigurationManager.AppSettings("DevSBOPassword")
+            'oCompany.CompanyDB = ConfigurationManager.AppSettings("DevDatabase")
+            'oCompany.UserName = ConfigurationManager.AppSettings("DevSBOUser")
+            'oCompany.Password = ConfigurationManager.AppSettings("DevSBOPassword")
+            oCompany.CompanyDB = Login.cmbCompania.SelectedIndex
+            oCompany.UserName = Login.txtSAPUser.Text
+            oCompany.Password = Login.txtSAPPw.Text
 
             Try
                 If CInt(ConfigurationManager.AppSettings("SAP_VERSION")) < 10 Then
                     oCompany.Server = ConfigurationManager.AppSettings("DevServer")
                     oCompany.LicenseServer = ConfigurationManager.AppSettings("LicenseServer")
-                    oCompany.DbUserName = ConfigurationManager.AppSettings("DevDBUser")
-                    oCompany.DbPassword = ConfigurationManager.AppSettings("DevDBPassword")
+                    'oCompany.DbUserName = ConfigurationManager.AppSettings("DevDBUser")
+                    'oCompany.DbPassword = ConfigurationManager.AppSettings("DevDBPassword")
+                    oCompany.UserName = Login.txtSAPUser.Text
+                    oCompany.Password = Login.txtSAPPw.Text
                 Else
                     oCompany.Server = ConfigurationManager.AppSettings("DevServer")
                     'oCompany.SLDServer = ConfigurationManager.AppSettings("LicenseServer")

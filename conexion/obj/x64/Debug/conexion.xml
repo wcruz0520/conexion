@@ -22,7 +22,27 @@ conexion
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
 </member>
+<member name="P:conexion.My.Resources.Resources.connect">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:conexion.My.Resources.Resources.import">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:conexion.My.Resources.Resources.LogoV1">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:conexion.My.Resources.Resources.LogoV2">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+</summary>
+</member>
+<member name="P:conexion.My.Resources.Resources.LogoV3">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
 </summary>
