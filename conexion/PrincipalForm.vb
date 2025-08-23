@@ -60,6 +60,10 @@ Public Class PrincipalForm
 
     Private Sub btnLogOff_Click(sender As Object, e As EventArgs) Handles btnLogOff.Click
         If SubMain.oCompany IsNot Nothing AndAlso SubMain.oCompany.Connected Then
+            If Me.ActiveMdiChild IsNot Nothing Then
+                MessageBox.Show("Debe cerrar todos los formularios antes de desconectarse.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
             SubMain.oCompany.Disconnect()
             UpdateConnectionStatus()
         Else
