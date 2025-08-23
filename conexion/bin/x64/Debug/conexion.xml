@@ -47,5 +47,25 @@ conexion
   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
 </summary>
 </member>
+<member name="P:conexion.My.Resources.Resources.puntorojo">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:conexion.My.Resources.Resources.puntoverde">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:conexion.My.Resources.Resources.server">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:conexion.My.Resources.Resources.user">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

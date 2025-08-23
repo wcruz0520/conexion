@@ -24,21 +24,51 @@ Partial Class PrincipalForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PrincipalForm))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblConnStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblServer = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblUser = New System.Windows.Forms.ToolStripStatusLabel()
         Me.topStrip = New System.Windows.Forms.ToolStrip()
         Me.btnLogOff = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.btnImport = New System.Windows.Forms.ToolStripButton()
+        Me.StatusStrip1.SuspendLayout()
         Me.topStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 731)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblConnStatus, Me.lblServer, Me.lblUser})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 729)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1123, 24)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1123, 26)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'lblConnStatus
+        '
+        Me.lblConnStatus.BackColor = System.Drawing.Color.Transparent
+        Me.lblConnStatus.Name = "lblConnStatus"
+        Me.lblConnStatus.Size = New System.Drawing.Size(99, 20)
+        Me.lblConnStatus.Text = "Disconnected"
+        Me.lblConnStatus.TextImageRelation = TextImageRelation.ImageBeforeText
+        Me.lblConnStatus.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+        '
+        'lblServer
+        '
+        Me.lblServer.BackColor = System.Drawing.Color.Transparent
+        Me.lblServer.Name = "lblServer"
+        Me.lblServer.Size = New System.Drawing.Size(0, 20)
+        Me.lblServer.TextImageRelation = TextImageRelation.ImageBeforeText
+        Me.lblServer.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+        '
+        'lblUser
+        '
+        Me.lblUser.BackColor = System.Drawing.Color.Transparent
+        Me.lblUser.Name = "lblUser"
+        Me.lblUser.Size = New System.Drawing.Size(0, 20)
+        Me.lblUser.TextImageRelation = TextImageRelation.ImageBeforeText
+        Me.lblUser.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
         '
         'topStrip
         '
@@ -86,6 +116,8 @@ Partial Class PrincipalForm
         Me.MaximizeBox = False
         Me.Name = "PrincipalForm"
         Me.Text = "Form1"
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.topStrip.ResumeLayout(False)
         Me.topStrip.PerformLayout()
         Me.ResumeLayout(False)
@@ -97,4 +129,7 @@ Partial Class PrincipalForm
     Friend WithEvents btnLogOff As ToolStripButton
     Friend WithEvents btnImport As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents lblConnStatus As ToolStripStatusLabel
+    Friend WithEvents lblServer As ToolStripStatusLabel
+    Friend WithEvents lblUser As ToolStripStatusLabel
 End Class

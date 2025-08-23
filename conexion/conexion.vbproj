@@ -192,6 +192,10 @@
     <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Recursos\puntorojo.png" />
+    <Content Include="Recursos\puntoverde.png" />
+    <Content Include="Recursos\server.png" />
+    <Content Include="Recursos\user.png" />
     <None Include="Recursos\LogoV3.ico" />
     <None Include="Recursos\LogoV2.ico" />
     <None Include="Recursos\LogoV1.ico" />

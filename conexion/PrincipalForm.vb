@@ -25,6 +25,9 @@ Public Class PrincipalForm
         Try
             btnLogOff.Image = My.Resources.connect
             btnImport.Image = My.Resources.import
+            lblConnStatus.Image = My.Resources.puntorojo
+            lblServer.Image = My.Resources.server
+            lblUser.Image = My.Resources.user
         Catch ex As Exception
 
         End Try
@@ -39,6 +42,19 @@ Public Class PrincipalForm
                 mdi.BackColor = SystemColors.ActiveCaption
             End If
         Next
+
+        ' Que el grip no “robe” espacio
+        StatusStrip1.SizingGrip = False
+
+        ' 3 columnas elásticas
+        'lblConnStatus.Spring = True
+        lblServer.Spring = True
+        lblUser.Spring = True
+
+        ' Alinear texto e icono
+        lblConnStatus.TextAlign = ContentAlignment.MiddleLeft
+        lblServer.TextAlign = ContentAlignment.MiddleLeft
+        lblUser.TextAlign = ContentAlignment.MiddleLeft
 
     End Sub
 
@@ -87,9 +103,17 @@ Public Class PrincipalForm
         If SubMain.oCompany IsNot Nothing AndAlso SubMain.oCompany.Connected Then
             btnLogOff.Text = "Log off"
             btnImport.Enabled = True
+            lblConnStatus.Text = "Connected"
+            lblServer.Text = String.Format("{0}", SubMain.oCompany.Server)
+            lblUser.Text = String.Format("{0} ({1})", SubMain.oCompany.UserName, SubMain.oCompany.CompanyDB)
+            lblConnStatus.Image = My.Resources.puntoverde
         Else
             btnLogOff.Text = "Log on"
             btnImport.Enabled = False
+            lblConnStatus.Text = "Disconnected"
+            lblServer.Text = " "
+            lblUser.Text = " "
+            lblConnStatus.Image = My.Resources.puntorojo
         End If
     End Sub
 
