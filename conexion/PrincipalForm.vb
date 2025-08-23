@@ -12,6 +12,7 @@ Public Class PrincipalForm
         }
         indiceActual = 0
         MostrarVistaActual()
+        Me.Icon = My.Resources.LogoV11
     End Sub
 
     Private Sub btnAtras_Click(sender As Object, e As EventArgs) Handles btnAtras.Click

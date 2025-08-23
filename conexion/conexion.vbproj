@@ -173,5 +173,10 @@
   <ItemGroup>
     <Folder Include="Components\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Recursos\LogoV1.ico" />
+    <Content Include="Recursos\LogoV1.png" />
+    <None Include="Resources\LogoV1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -29,7 +29,7 @@ Namespace Views
             'lbl.Height = 30
             Me.Controls.Add(lbl)
 
-            Sublbl.Text = "Seleccinar el tipo de data que quiere importar. Para continuar dar clic en ""Siguiente"""
+            Sublbl.Text = "Seleccionar el tipo de data que quiere importar. Para continuar dar clic en ""Siguiente"""
             Sublbl.Font = New Font("Calibri", 11, FontStyle.Regular)
             'Sublbl.Dock = DockStyle.Top
             Sublbl.Location = New Point(20, 40)

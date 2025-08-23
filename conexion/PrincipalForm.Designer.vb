@@ -62,6 +62,7 @@ Partial Class PrincipalForm
         Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.panelPrincipal)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "PrincipalForm"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
