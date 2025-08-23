@@ -22,6 +22,7 @@ Partial Class PrincipalForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PrincipalForm))
         Me.panelPrincipal = New System.Windows.Forms.Panel()
         Me.btnAtras = New System.Windows.Forms.Button()
         Me.btnSiguiente = New System.Windows.Forms.Button()
@@ -62,6 +63,7 @@ Partial Class PrincipalForm
         Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.panelPrincipal)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "PrincipalForm"
         Me.Text = "Form1"
