@@ -11,7 +11,7 @@ Public Class ConnectSAP
         NombreClase = "ConnectSAP"
     End Sub
 
-    Public Function conectSAP() As Boolean
+    Public Function conectSAP(compania As String, usuario As String, clave As String) As Boolean
         Try
             Dim ErrCode As Long
             Dim ErrMsg As String = ""
@@ -27,9 +27,19 @@ Public Class ConnectSAP
             'oCompany.CompanyDB = ConfigurationManager.AppSettings("DevDatabase")
             'oCompany.UserName = ConfigurationManager.AppSettings("DevSBOUser")
             'oCompany.Password = ConfigurationManager.AppSettings("DevSBOPassword")
-            oCompany.CompanyDB = Login.cmbCompania.SelectedIndex
-            oCompany.UserName = Login.txtSAPUser.Text
-            oCompany.Password = Login.txtSAPPw.Text
+            oCompany.CompanyDB = compania 'Login.cmbCompania.Text
+            oCompany.UserName = usuario 'Login.txtSAPUser.Text
+            oCompany.Password = clave 'Login.txtSAPPw.Text
+
+            guardaLog.RegistrarLOG(NombreClase, 2, "Datos .config")
+            guardaLog.RegistrarLOG(NombreClase, 2, ConfigurationManager.AppSettings("DevDatabase").ToString)
+            guardaLog.RegistrarLOG(NombreClase, 2, ConfigurationManager.AppSettings("DevSBOUser").ToString)
+            guardaLog.RegistrarLOG(NombreClase, 2, ConfigurationManager.AppSettings("DevSBOPassword").ToString)
+
+            guardaLog.RegistrarLOG(NombreClase, 2, "Datos textboxes")
+            guardaLog.RegistrarLOG(NombreClase, 2, compania)
+            guardaLog.RegistrarLOG(NombreClase, 2, usuario)
+            guardaLog.RegistrarLOG(NombreClase, 2, clave)
 
             Try
                 If CInt(ConfigurationManager.AppSettings("SAP_VERSION")) < 10 Then

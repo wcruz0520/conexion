@@ -12,7 +12,7 @@ Public Class PrincipalForm
 
         btnLogOff.AutoSize = False
         btnLogOff.Size = New Size(90, 36)
-        btnLogOff.Text = "Log on"
+        'btnLogOff.Text = "Log on"
         btnLogOff.TextImageRelation = TextImageRelation.ImageAboveText
         btnLogOff.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
 
@@ -30,6 +30,7 @@ Public Class PrincipalForm
         End Try
 
         Me.IsMdiContainer = True
+        UpdateConnectionStatus()
 
         ' (Opcional) color del área MDI estilo SAP
         For Each ctl As Control In Me.Controls
@@ -42,7 +43,12 @@ Public Class PrincipalForm
     End Sub
 
     Private Sub btnLogOff_Click(sender As Object, e As EventArgs) Handles btnLogOff.Click
-        OpenMdiChild(Of Login)()
+        If SubMain.oCompany IsNot Nothing AndAlso SubMain.oCompany.Connected Then
+            SubMain.oCompany.Disconnect()
+            UpdateConnectionStatus()
+        Else
+            OpenMdiChild(Of Login)()
+        End If
     End Sub
 
     Private Sub btnImport_Click(sender As Object, e As EventArgs) Handles btnImport.Click
@@ -75,6 +81,16 @@ Public Class PrincipalForm
         'child.WindowState = FormWindowState.Maximized
 
         child.Show()
+    End Sub
+
+    Public Sub UpdateConnectionStatus()
+        If SubMain.oCompany IsNot Nothing AndAlso SubMain.oCompany.Connected Then
+            btnLogOff.Text = "Log off"
+            btnImport.Enabled = True
+        Else
+            btnLogOff.Text = "Log on"
+            btnImport.Enabled = False
+        End If
     End Sub
 
 End Class

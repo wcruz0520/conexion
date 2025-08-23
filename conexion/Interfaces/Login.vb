@@ -1,4 +1,6 @@
-﻿Public Class Login
+﻿Imports System.Configuration
+
+Public Class Login
     Public cnSAP As ConnectSAP
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -22,14 +24,44 @@
         Sublbl.AutoSize = True
         Sublbl.Location = New Point(20, 35)
         pnlHeader.Controls.Add(Sublbl)
+
+        CargarCompanias()
     End Sub
 
     Private Sub btnConectar_Click(sender As Object, e As EventArgs) Handles btnConectar.Click
         cnSAP = New ConnectSAP(SubMain.oCompany)
-        If cnSAP.conectSAP() Then
+        If cnSAP.conectSAP(Me.cmbCompania.Text, Me.txtSAPUser.Text, Me.txtSAPPw.Text) Then
             If SubMain.oCompany.Connected Then
                 guardaLog.RegistrarLOG(NombreClase, 1, String.Format("Conexion SAP exitosa, CompanyName={0} ,DataBase={1}  ", oCompany.CompanyName, oCompany.CompanyDB))
+                SubMain.BaseForm.UpdateConnectionStatus()
+                Me.Close()
             End If
         End If
+    End Sub
+
+    Private Sub CargarCompanias()
+        Try
+            Dim tmpCompany As New SAPbobsCOM.Company()
+            tmpCompany.Server = ConfigurationManager.AppSettings("DevServer")
+            tmpCompany.LicenseServer = ConfigurationManager.AppSettings("LicenseServer")
+            tmpCompany.DbServerType = CType(CInt(ConfigurationManager.AppSettings("DevServerType")), SAPbobsCOM.BoDataServerTypes)
+            tmpCompany.UseTrusted = Boolean.Parse(ConfigurationManager.AppSettings("UseTrusted"))
+            If tmpCompany.UseTrusted = False Then
+                tmpCompany.DbUserName = ConfigurationManager.AppSettings("DevDBUser")
+                tmpCompany.DbPassword = ConfigurationManager.AppSettings("DevDBPassword")
+            End If
+
+            Dim rs As SAPbobsCOM.Recordset = tmpCompany.GetCompanyList()
+            cmbCompania.Items.Clear()
+            While Not rs.EoF
+                cmbCompania.Items.Add(rs.Fields.Item(0).Value.ToString())
+                rs.MoveNext()
+            End While
+            If cmbCompania.Items.Count > 0 Then
+                cmbCompania.SelectedIndex = 0
+            End If
+        Catch ex As Exception
+            'ignore load errors
+        End Try
     End Sub
 End Class
