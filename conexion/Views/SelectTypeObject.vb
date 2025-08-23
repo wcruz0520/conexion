@@ -49,20 +49,20 @@ Namespace Views
 
             rbDatosMaestros = New RadioButton()
             rbDatosMaestros.AutoSize = True
-            rbDatosMaestros.Text = "Datos Maestros (Por ejemplo, artículos, socios de negocio, entre otros)"
+            rbDatosMaestros.Text = "UDO tipo Datos Maestros"
             rbDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
             rbDatosMaestros.Location = New Point(20, 40)
             rbDatosMaestros.Checked = True
 
             rbDatosTransaccionales = New RadioButton()
             rbDatosTransaccionales.AutoSize = True
-            rbDatosTransaccionales.Text = "Datos transaccionales (Por ejemplo, facturas de ventas, facturas de compras, entre otros)"
+            rbDatosTransaccionales.Text = "UDO tipo Documento"
             rbDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
             rbDatosTransaccionales.Location = New Point(20, 70)
 
             rbDatosConfiguracion = New RadioButton()
             rbDatosConfiguracion.AutoSize = True
-            rbDatosConfiguracion.Text = "Datos de configuración (Por ejemplo, códigos de impuestos, bancos, entre otros)"
+            rbDatosConfiguracion.Text = "UDO tipo Ningún objeto"
             rbDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
             rbDatosConfiguracion.Location = New Point(20, 100)
 
