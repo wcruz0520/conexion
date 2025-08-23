@@ -20,6 +20,7 @@ Namespace Views
             Dim lbl As New Label()
             Dim Sublbl As New Label()
 
+            'Titulo 
             lbl.Text = "Paso 1:  Seleccionar Tipo Objeto"
             lbl.Font = New Font("Calibri", 15, FontStyle.Bold)
             'lbl.Dock = DockStyle.Top
@@ -29,6 +30,7 @@ Namespace Views
             'lbl.Height = 30
             Me.Controls.Add(lbl)
 
+            'SubTitulo
             Sublbl.Text = "Seleccionar el tipo de data que quiere importar. Para continuar dar clic en ""Siguiente"""
             Sublbl.Font = New Font("Calibri", 11, FontStyle.Regular)
             'Sublbl.Dock = DockStyle.Top
