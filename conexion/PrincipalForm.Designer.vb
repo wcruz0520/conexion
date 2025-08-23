@@ -34,9 +34,9 @@ Partial Class PrincipalForm
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 733)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 731)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1123, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1123, 24)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '

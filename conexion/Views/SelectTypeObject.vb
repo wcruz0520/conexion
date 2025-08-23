@@ -8,7 +8,7 @@ Namespace Views
         Private rbDatosMaestros As RadioButton
         Private rbDatosTransaccionales As RadioButton
         Private rbDatosConfiguracion As RadioButton
-        Public selectoption As String
+        Public SelectedOption As String
 
         Public Sub New()
             InitializeComponent()
@@ -77,17 +77,8 @@ Namespace Views
             Me.Controls.Add(panelContent)
             Me.Controls.Add(panelHeader)
 
-            If rbDatosConfiguracion.Checked Then
-                SubMain.SelectedTypeObject = rbDatosConfiguracion.Text
-            End If
-
-            If rbDatosMaestros.Checked Then
-                SubMain.SelectedTypeObject = rbDatosMaestros.Text
-            End If
-
-            If rbDatosTransaccionales.Checked Then
-                SubMain.SelectedTypeObject = rbDatosTransaccionales.Text
-            End If
+            SelectedOption = rbDatosMaestros.Text
+            SubMain.SelectedTypeObject = SelectedOption
 
             Me.ResumeLayout(False)
 
@@ -96,7 +87,8 @@ Namespace Views
         Private Sub RadioButton_CheckedChanged(sender As Object, e As EventArgs)
             Dim rb As RadioButton = CType(sender, RadioButton)
             If rb.Checked Then
-                SubMain.SelectedTypeObject = rb.Text
+                SelectedOption = rb.Text
+                SubMain.SelectedTypeObject = SelectedOption
             End If
         End Sub
     End Class

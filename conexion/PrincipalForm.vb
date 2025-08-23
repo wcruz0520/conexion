@@ -93,4 +93,10 @@ Public Class PrincipalForm
         End If
     End Sub
 
+    Private Sub PrincipalForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If SubMain.oCompany IsNot Nothing AndAlso SubMain.oCompany.Connected Then
+            SubMain.oCompany.Disconnect()
+        End If
+    End Sub
+
 End Class
