@@ -2,8 +2,9 @@
 
 Public Class Login
     Public cnSAP As ConnectSAP
+    Public FontSt As Font
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        FontSt = New Font("Calibri", 10, FontStyle.Regular)
         Me.Text = "Iniciar Sesión"
 
         pnlHeader.Dock = DockStyle.Top
@@ -25,10 +26,19 @@ Public Class Login
         Sublbl.Location = New Point(20, 35)
         pnlHeader.Controls.Add(Sublbl)
 
+        cmbCompania.Font = FontSt
+        txtSAPUser.Font = FontSt
+        txtSAPPw.Font = FontSt
+
         CargarCompanias()
     End Sub
 
     Private Sub btnConectar_Click(sender As Object, e As EventArgs) Handles btnConectar.Click
+        ToggleInputs(False)
+        btnConectar.Enabled = False
+        btnConectar.Text = "Conectando..."
+        Me.UseWaitCursor = True
+
         cnSAP = New ConnectSAP(SubMain.oCompany)
         If cnSAP.conectSAP(Me.cmbCompania.Text, Me.txtSAPUser.Text, Me.txtSAPPw.Text) Then
             If SubMain.oCompany.Connected Then
@@ -36,7 +46,19 @@ Public Class Login
                 SubMain.BaseForm.UpdateConnectionStatus()
                 Me.Close()
             End If
+        Else
+            MessageBox.Show("La conexión no fue posible, revisar las credenciales", "Conexión SAP", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.UseWaitCursor = False
+            btnConectar.Text = "Conectar"
+            btnConectar.Enabled = True
+            ToggleInputs(True)
         End If
+    End Sub
+
+    Private Sub ToggleInputs(enabled As Boolean)
+        txtSAPUser.Enabled = enabled
+        txtSAPPw.Enabled = enabled
+        cmbCompania.Enabled = enabled
     End Sub
 
     Private Sub CargarCompanias()
