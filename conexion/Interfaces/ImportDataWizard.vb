@@ -5,6 +5,7 @@
     Private Sub ImportDataWizard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         vistas = New List(Of UserControl) From {
             New Views.SelectTypeObject(),
+            New Views.SelectAction(),
             New Views.SelectTable(),
             New Views.ExecuteProcess()
         }

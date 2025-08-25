@@ -167,6 +167,12 @@
     <Compile Include="Views\ExecuteProcess.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Views\SelectAction.Designer.vb">
+      <DependentUpon>SelectAction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectAction.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Views\SelectTable.vb">
       <SubType>UserControl</SubType>
     </Compile>

@@ -7,6 +7,7 @@ Module SubMain
     Public NombreClase As String
     Public BaseForm As PrincipalForm
     Public SelectedTypeObject As String
+    Public SelectedTypeObject2 As String
 
     <STAThread()>
     Sub Main()
