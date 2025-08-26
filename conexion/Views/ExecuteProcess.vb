@@ -13,7 +13,7 @@ Namespace Views
             Me.SuspendLayout()
             Me.BackColor = Color.LightBlue
             Dim lbl As New Label()
-            lbl.Text = "Ejecución Proceso"
+            lbl.Text = $"Ejecución Proceso {SubMain.SelectedOptionNative}/{SubMain.SelectedOptionUDO} - {SubMain.SelectedNativeTable}/{SubMain.SelectedUDOTable} - {SubMain.SelectedNativeTableCode}/{SubMain.SelectedUDOTableCode}"
             lbl.Dock = DockStyle.Fill
             lbl.TextAlign = ContentAlignment.MiddleCenter
             Me.Controls.Add(lbl)
