@@ -35,21 +35,21 @@ Namespace Views
 
             ' ===== Header =====
             panelHeader = New Panel() With {
-        .Dock = DockStyle.Top, .Height = 70,
-        .Padding = New Padding(20, 20, 20, 10), .BackColor = Color.White
-      }
+                .Dock = DockStyle.Top, .Height = 70,
+                .Padding = New Padding(20, 20, 20, 10), .BackColor = Color.White
+            }
 
             lblTitulo = New Label() With {
-        .Text = "Paso 3: Seleccionar Tabla",
-        .Font = New Font("Calibri", 15, FontStyle.Bold),
-        .AutoSize = True, .Location = New Point(20, 8)
-      }
+                .Text = "Paso 3: Seleccionar Tabla",
+                .Font = New Font("Calibri", 15, FontStyle.Bold),
+                .AutoSize = True, .Location = New Point(20, 8)
+            }
             panelHeader.Controls.Add(lblTitulo)
 
             Sublbl = New Label() With {
-        .Font = New Font("Calibri", 11, FontStyle.Regular),
-        .AutoSize = True, .Location = New Point(20, 36)
-      }
+                .Font = New Font("Calibri", 11, FontStyle.Regular),
+                .AutoSize = True, .Location = New Point(20, 36)
+            }
             panelHeader.Controls.Add(Sublbl)
 
             ' ===== Tabs =====
@@ -61,9 +61,9 @@ Namespace Views
             grpNative = New GroupBox() With {.Text = "Tablas nativas", .Dock = DockStyle.Fill, .Padding = New Padding(10)}
             tvNative = New TreeView() With {.Dock = DockStyle.Fill, .HideSelection = False}
             lblNativeHint = New Label() With {
-        .Dock = DockStyle.Top, .Height = 20, .Text = "Selecciona una tabla nativa...",
-        .ForeColor = Color.DimGray
-      }
+                .Dock = DockStyle.Top, .Height = 20, .Text = "Selecciona una tabla nativa...",
+                .ForeColor = Color.DimGray
+            }
             grpNative.Controls.Add(tvNative)
             grpNative.Controls.Add(lblNativeHint)
             tabNative.Controls.Add(grpNative)
@@ -72,9 +72,9 @@ Namespace Views
             grpUDO = New GroupBox() With {.Text = "Tablas de usuario (UDO)", .Dock = DockStyle.Fill, .Padding = New Padding(10)}
             tvUDO = New TreeView() With {.Dock = DockStyle.Fill, .HideSelection = False}
             lblUDOHint = New Label() With {
-        .Dock = DockStyle.Top, .Height = 20, .Text = "Selecciona una tabla UDO...",
-        .ForeColor = Color.DimGray
-      }
+                .Dock = DockStyle.Top, .Height = 20, .Text = "Selecciona una tabla UDO...",
+                .ForeColor = Color.DimGray
+            }
             grpUDO.Controls.Add(tvUDO)
             grpUDO.Controls.Add(lblUDOHint)
             tabUdo.Controls.Add(grpUDO)
@@ -85,6 +85,7 @@ Namespace Views
             Controls.Add(tabs)
             Controls.Add(panelHeader)
 
+            AddHandler tabs.Selecting, AddressOf Tabs_Selecting
             AddHandler tvNative.AfterSelect, AddressOf TvNative_AfterSelect
             AddHandler tvUDO.AfterSelect, AddressOf TvUDO_AfterSelect
 
@@ -114,10 +115,13 @@ Namespace Views
             Dim hasNative As Boolean = Not String.IsNullOrWhiteSpace(If(SubMain.SelectedOptionNative, ""))
             Dim hasUDO As Boolean = Not String.IsNullOrWhiteSpace(If(SubMain.SelectedOptionUDO, ""))
 
+            ' Habilitar/Deshabilitar pestañas y su contenido
+            tabNative.Enabled = hasNative
             tvNative.Enabled = hasNative
             lblNativeHint.Visible = hasNative
             tabNative.Text = If(hasNative, "Nativas", "Nativas (no elegido en Paso 1)")
 
+            tabUdo.Enabled = hasUDO
             tvUDO.Enabled = hasUDO
             lblUDOHint.Visible = hasUDO
             tabUdo.Text = If(hasUDO, "UDO", "UDO (no elegido en Paso 1)")
@@ -205,6 +209,17 @@ Namespace Views
 
             Return True
         End Function
+
+        Private Sub Tabs_Selecting(sender As Object, e As TabControlCancelEventArgs)
+            Dim hasNative As Boolean = Not String.IsNullOrWhiteSpace(If(SubMain.SelectedOptionNative, ""))
+            Dim hasUDO As Boolean = Not String.IsNullOrWhiteSpace(If(SubMain.SelectedOptionUDO, ""))
+
+            If e.TabPage Is tabNative AndAlso Not hasNative Then
+                e.Cancel = True
+            ElseIf e.TabPage Is tabUdo AndAlso Not hasUDO Then
+                e.Cancel = True
+            End If
+        End Sub
 
     End Class
 End Namespace

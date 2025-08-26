@@ -133,23 +133,29 @@ Namespace Views
             panelContent.Controls.Add(cbDatosMaestros)
             panelContent.Controls.Add(cbDatosTransaccionales)
             panelContent.Controls.Add(cbDatosConfiguracion)
-            cbDatosMaestros.Checked = True
+            'cbDatosMaestros.Checked = True
 
             panelContent2.Controls.Add(lblpn2)
             panelContent2.Controls.Add(cbUdoDatosMaestros)
             panelContent2.Controls.Add(cbUdoDatosTransaccionales)
             panelContent2.Controls.Add(cbUdoDatosConfiguracion)
-            cbUdoDatosMaestros.Checked = True
+            'cbUdoDatosMaestros.Checked = True
 
             Me.Controls.Add(panelContent2)
             Me.Controls.Add(panelSpacer)
             Me.Controls.Add(panelContent)
             Me.Controls.Add(panelHeader)
 
-            _SelectedOptionNative = cbDatosMaestros.Text
+            '_SelectedOptionNative = cbDatosMaestros.Text
+            'SubMain.SelectedOptionNative = _SelectedOptionNative
+
+            '_SelectedOptionUDO = cbUdoDatosMaestros.Text
+            'SubMain.SelectedOptionUDO = _SelectedOptionUDO
+
+            _SelectedOptionNative = If(cbDatosMaestros.Checked, cbDatosMaestros.Text, Nothing)
             SubMain.SelectedOptionNative = _SelectedOptionNative
 
-            _SelectedOptionUDO = cbUdoDatosMaestros.Text
+            _SelectedOptionUDO = If(cbUdoDatosMaestros.Checked, cbUdoDatosMaestros.Text, Nothing)
             SubMain.SelectedOptionUDO = _SelectedOptionUDO
 
             Me.ResumeLayout(False)
@@ -158,6 +164,8 @@ Namespace Views
 
         Private Sub CheckBox_CheckedChanged(sender As Object, e As EventArgs)
             Dim cb As CheckBox = CType(sender, CheckBox)
+            Dim scope As String = If(TryCast(cb.Tag, String), "")
+
             If cb.Checked Then
                 ' uncheck siblings dentro del mismo contenedor
                 For Each ctrl As Control In cb.Parent.Controls
@@ -166,13 +174,26 @@ Namespace Views
                     End If
                 Next
 
-                Dim scope As String = If(TryCast(cb.Tag, String), "")
                 If scope = "Native" Then
                     _SelectedOptionNative = cb.Text
                     SubMain.SelectedOptionNative = _SelectedOptionNative
                 ElseIf scope = "UDO" Then
                     _SelectedOptionUDO = cb.Text
                     SubMain.SelectedOptionUDO = _SelectedOptionUDO
+                End If
+
+            Else
+                ' Si se desmarcó y NO queda ninguna en el grupo, limpiar selección global
+                If scope = "Native" Then
+                    If Not (cbDatosMaestros.Checked OrElse cbDatosTransaccionales.Checked OrElse cbDatosConfiguracion.Checked) Then
+                        _SelectedOptionNative = Nothing
+                        SubMain.SelectedOptionNative = Nothing
+                    End If
+                ElseIf scope = "UDO" Then
+                    If Not (cbUdoDatosMaestros.Checked OrElse cbUdoDatosTransaccionales.Checked OrElse cbUdoDatosConfiguracion.Checked) Then
+                        _SelectedOptionUDO = Nothing
+                        SubMain.SelectedOptionUDO = Nothing
+                    End If
                 End If
             End If
         End Sub
