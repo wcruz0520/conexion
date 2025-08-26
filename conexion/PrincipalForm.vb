@@ -25,7 +25,7 @@ Public Class PrincipalForm
         Try
             btnLogOff.Image = My.Resources.connect
             btnImport.Image = My.Resources.import
-            lblConnStatus.Image = My.Resources.puntorojo
+            lblConnStatus.Image = My.Resources.puntorojo2
             lblServer.Image = My.Resources.server
             lblUser.Image = My.Resources.user
             lblLogo.Image = My.Resources.LogoSS
@@ -61,6 +61,8 @@ Public Class PrincipalForm
         lblLogo.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
         lblPartner.TextAlign = ContentAlignment.MiddleRight
         lblLogo.Size = New Size(30, 20)
+
+        lblPartner.BackColor = Color.Transparent
 
     End Sub
 
@@ -116,14 +118,14 @@ Public Class PrincipalForm
             lblConnStatus.Text = "Connected"
             lblServer.Text = String.Format("{0}", SubMain.oCompany.Server)
             lblUser.Text = String.Format("{0} ({1})", SubMain.oCompany.UserName, SubMain.oCompany.CompanyDB)
-            lblConnStatus.Image = My.Resources.puntoverde
+            lblConnStatus.Image = My.Resources.puntoverde2
         Else
             btnLogOff.Text = "Log on"
             btnImport.Enabled = False
             lblConnStatus.Text = "Disconnected"
             lblServer.Text = " "
             lblUser.Text = " "
-            lblConnStatus.Image = My.Resources.puntorojo
+            lblConnStatus.Image = My.Resources.puntorojo2
         End If
     End Sub
 

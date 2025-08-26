@@ -216,7 +216,9 @@
   <ItemGroup>
     <None Include="Recursos\LogoSS.png" />
     <Content Include="Recursos\puntorojo.png" />
+    <None Include="Recursos\puntorojo2.png" />
     <Content Include="Recursos\puntoverde.png" />
+    <None Include="Recursos\puntoverde2.png" />
     <Content Include="Recursos\server.png" />
     <Content Include="Recursos\user.png" />
     <None Include="Recursos\LogoV3.ico" />

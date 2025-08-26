@@ -20,6 +20,7 @@ Namespace Views
 
         Private Sub InitializeComponent()
             Me.SuspendLayout()
+            Me.AutoScroll = True
             Me.BackColor = Color.White
             'Dim lbl As New Label()
             'Dim Sublbl As New Label()
@@ -48,11 +49,13 @@ Namespace Views
             ' Panel para el resto de los elementos
             Dim panelContent As New Panel()
             panelContent.Dock = DockStyle.Top
+            panelContent.Height = 130
             panelContent.Padding = New Padding(50, 5, 50, 20)
             panelContent.BackColor = Color.LightGray
 
             Dim panelContent2 As New Panel()
-            panelContent2.Dock = DockStyle.Bottom
+            panelContent2.Dock = DockStyle.Top
+            panelContent2.Height = 130
             panelContent2.Padding = New Padding(50, 5, 50, 30)
             panelContent2.BackColor = Color.LightGray
 
@@ -62,7 +65,7 @@ Namespace Views
             cbDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
             cbDatosMaestros.Location = New Point(20, 40)
             AddHandler cbDatosMaestros.CheckedChanged, AddressOf CheckBox_CheckedChanged
-            cbDatosMaestros.Checked = True
+            'cbDatosMaestros.Checked = True
 
             cbDatosTransaccionales = New CheckBox()
             cbDatosTransaccionales.AutoSize = True
@@ -81,7 +84,7 @@ Namespace Views
             cbUdoDatosMaestros.Text = "UDO Datos Maestros"
             cbUdoDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
             cbUdoDatosMaestros.Location = New Point(20, 40)
-            cbUdoDatosMaestros.Checked = True
+            'cbUdoDatosMaestros.Checked = True
 
             cbUdoDatosTransaccionales = New CheckBox()
             cbUdoDatosTransaccionales.AutoSize = True
@@ -101,16 +104,18 @@ Namespace Views
             AddHandler cbUdoDatosTransaccionales.CheckedChanged, AddressOf CheckBox_CheckedChanged
             AddHandler cbUdoDatosConfiguracion.CheckedChanged, AddressOf CheckBox_CheckedChanged
 
-            panelContent2.Controls.Add(cbUdoDatosMaestros)
-            panelContent2.Controls.Add(cbUdoDatosTransaccionales)
-            panelContent2.Controls.Add(cbUdoDatosConfiguracion)
-
             panelContent.Controls.Add(cbDatosMaestros)
             panelContent.Controls.Add(cbDatosTransaccionales)
             panelContent.Controls.Add(cbDatosConfiguracion)
+            cbDatosMaestros.Checked = True
 
-            Me.Controls.Add(panelContent)
+            panelContent2.Controls.Add(cbUdoDatosMaestros)
+            panelContent2.Controls.Add(cbUdoDatosTransaccionales)
+            panelContent2.Controls.Add(cbUdoDatosConfiguracion)
+            cbUdoDatosMaestros.Checked = True
+
             Me.Controls.Add(panelContent2)
+            Me.Controls.Add(panelContent)
             Me.Controls.Add(panelHeader)
 
             SelectedOption = cbDatosMaestros.Text
@@ -123,6 +128,13 @@ Namespace Views
         Private Sub CheckBox_CheckedChanged(sender As Object, e As EventArgs)
             Dim cb As CheckBox = CType(sender, CheckBox)
             If cb.Checked Then
+                If cb.Parent IsNot Nothing Then
+                    For Each ctrl As Control In cb.Parent.Controls
+                        If TypeOf ctrl Is CheckBox AndAlso ctrl IsNot cb Then
+                            DirectCast(ctrl, CheckBox).Checked = False
+                        End If
+                    Next
+                End If
                 SelectedOption = cb.Text
                 SubMain.SelectedTypeObject = SelectedOption
             End If
