@@ -5,12 +5,13 @@ Namespace Views
     Public Class SelectTypeObject
         Inherits UserControl
 
-        Private rbDatosMaestros As RadioButton
-        Private rbDatosTransaccionales As RadioButton
-        Private rbDatosConfiguracion As RadioButton
-        Private rbUdoDatosMaestros As RadioButton
-        Private rbUdoDatosTransaccionales As RadioButton
-        Private rbUdoDatosConfiguracion As RadioButton
+        Private cbDatosMaestros As CheckBox
+        Private cbDatosTransaccionales As CheckBox
+        Private cbDatosConfiguracion As CheckBox
+        Private cbUdoDatosMaestros As CheckBox
+        Private cbUdoDatosTransaccionales As CheckBox
+        Private cbUdoDatosConfiguracion As CheckBox
+
         Public SelectedOption As String
 
         Public Sub New()
@@ -55,74 +56,74 @@ Namespace Views
             panelContent2.Padding = New Padding(50, 5, 50, 30)
             panelContent2.BackColor = Color.LightGray
 
-            rbDatosMaestros = New RadioButton()
-            rbDatosMaestros.AutoSize = True
-            rbDatosMaestros.Text = "Datos Maestros"
-            rbDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
-            rbDatosMaestros.Location = New Point(20, 40)
-            rbDatosMaestros.Checked = True
+            cbDatosMaestros = New CheckBox()
+            cbDatosMaestros.AutoSize = True
+            cbDatosMaestros.Text = "Datos Maestros"
+            cbDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
+            cbDatosMaestros.Location = New Point(20, 40)
+            AddHandler cbDatosMaestros.CheckedChanged, AddressOf CheckBox_CheckedChanged
+            cbDatosMaestros.Checked = True
 
-            rbDatosTransaccionales = New RadioButton()
-            rbDatosTransaccionales.AutoSize = True
-            rbDatosTransaccionales.Text = "Documentos transaccionales"
-            rbDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
-            rbDatosTransaccionales.Location = New Point(20, 70)
+            cbDatosTransaccionales = New CheckBox()
+            cbDatosTransaccionales.AutoSize = True
+            cbDatosTransaccionales.Text = "Documentos transaccionales"
+            cbDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
+            cbDatosTransaccionales.Location = New Point(20, 70)
 
-            rbDatosConfiguracion = New RadioButton()
-            rbDatosConfiguracion.AutoSize = True
-            rbDatosConfiguracion.Text = "Configuración"
-            rbDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
-            rbDatosConfiguracion.Location = New Point(20, 100)
+            cbDatosConfiguracion = New CheckBox()
+            cbDatosConfiguracion.AutoSize = True
+            cbDatosConfiguracion.Text = "Configuración"
+            cbDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
+            cbDatosConfiguracion.Location = New Point(20, 100)
 
-            rbUdoDatosMaestros = New RadioButton()
-            rbUdoDatosMaestros.AutoSize = True
-            rbUdoDatosMaestros.Text = "UDO Datos Maestros"
-            rbUdoDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
-            rbUdoDatosMaestros.Location = New Point(20, 40)
-            rbUdoDatosMaestros.Checked = True
+            cbUdoDatosMaestros = New CheckBox()
+            cbUdoDatosMaestros.AutoSize = True
+            cbUdoDatosMaestros.Text = "UDO Datos Maestros"
+            cbUdoDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
+            cbUdoDatosMaestros.Location = New Point(20, 40)
+            cbUdoDatosMaestros.Checked = True
 
-            rbUdoDatosTransaccionales = New RadioButton()
-            rbUdoDatosTransaccionales.AutoSize = True
-            rbUdoDatosTransaccionales.Text = "UDO Documento"
-            rbUdoDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
-            rbUdoDatosTransaccionales.Location = New Point(20, 70)
+            cbUdoDatosTransaccionales = New CheckBox()
+            cbUdoDatosTransaccionales.AutoSize = True
+            cbUdoDatosTransaccionales.Text = "UDO Documento"
+            cbUdoDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
+            cbUdoDatosTransaccionales.Location = New Point(20, 70)
 
-            rbUdoDatosConfiguracion = New RadioButton()
-            rbUdoDatosConfiguracion.AutoSize = True
-            rbUdoDatosConfiguracion.Text = "UDO Ningún objeto"
-            rbUdoDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
-            rbUdoDatosConfiguracion.Location = New Point(20, 100)
+            cbUdoDatosConfiguracion = New CheckBox()
+            cbUdoDatosConfiguracion.AutoSize = True
+            cbUdoDatosConfiguracion.Text = "UDO Ningún objeto"
+            cbUdoDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
+            cbUdoDatosConfiguracion.Location = New Point(20, 100)
 
-            AddHandler rbDatosMaestros.CheckedChanged, AddressOf RadioButton_CheckedChanged
-            AddHandler rbDatosTransaccionales.CheckedChanged, AddressOf RadioButton_CheckedChanged
-            AddHandler rbDatosConfiguracion.CheckedChanged, AddressOf RadioButton_CheckedChanged
-            AddHandler rbUdoDatosMaestros.CheckedChanged, AddressOf RadioButton_CheckedChanged
-            AddHandler rbUdoDatosTransaccionales.CheckedChanged, AddressOf RadioButton_CheckedChanged
-            AddHandler rbUdoDatosConfiguracion.CheckedChanged, AddressOf RadioButton_CheckedChanged
+            AddHandler cbDatosTransaccionales.CheckedChanged, AddressOf CheckBox_CheckedChanged
+            AddHandler cbDatosConfiguracion.CheckedChanged, AddressOf CheckBox_CheckedChanged
+            AddHandler cbUdoDatosMaestros.CheckedChanged, AddressOf CheckBox_CheckedChanged
+            AddHandler cbUdoDatosTransaccionales.CheckedChanged, AddressOf CheckBox_CheckedChanged
+            AddHandler cbUdoDatosConfiguracion.CheckedChanged, AddressOf CheckBox_CheckedChanged
 
-            panelContent2.Controls.Add(rbUdoDatosMaestros)
-            panelContent2.Controls.Add(rbUdoDatosTransaccionales)
-            panelContent2.Controls.Add(rbUdoDatosConfiguracion)
+            panelContent2.Controls.Add(cbUdoDatosMaestros)
+            panelContent2.Controls.Add(cbUdoDatosTransaccionales)
+            panelContent2.Controls.Add(cbUdoDatosConfiguracion)
 
-            panelContent.Controls.Add(rbDatosMaestros)
-            panelContent.Controls.Add(rbDatosTransaccionales)
-            panelContent.Controls.Add(rbDatosConfiguracion)
+            panelContent.Controls.Add(cbDatosMaestros)
+            panelContent.Controls.Add(cbDatosTransaccionales)
+            panelContent.Controls.Add(cbDatosConfiguracion)
 
             Me.Controls.Add(panelContent)
             Me.Controls.Add(panelContent2)
             Me.Controls.Add(panelHeader)
 
-            SelectedOption = rbDatosMaestros.Text
+            SelectedOption = cbDatosMaestros.Text
             SubMain.SelectedTypeObject = SelectedOption
 
             Me.ResumeLayout(False)
 
         End Sub
 
-        Private Sub RadioButton_CheckedChanged(sender As Object, e As EventArgs)
-            Dim rb As RadioButton = CType(sender, RadioButton)
-            If rb.Checked Then
-                SelectedOption = rb.Text
+        Private Sub CheckBox_CheckedChanged(sender As Object, e As EventArgs)
+            Dim cb As CheckBox = CType(sender, CheckBox)
+            If cb.Checked Then
+                SelectedOption = cb.Text
                 SubMain.SelectedTypeObject = SelectedOption
             End If
         End Sub
