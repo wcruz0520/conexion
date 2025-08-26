@@ -9,6 +9,10 @@ Module SubMain
     Public SelectedOptionNative As String
     Public SelectedOptionUDO As String
     Public SelectedTypeObject2 As String
+    Public SelectedNativeTable As String
+    Public SelectedNativeTableCode As String
+    Public SelectedUDOTable As String
+    Public SelectedUDOTableCode As String
 
     <STAThread()>
     Sub Main()

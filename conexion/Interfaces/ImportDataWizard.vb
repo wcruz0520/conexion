@@ -31,6 +31,15 @@
                 Return
             End If
         End If
+        ' >>> NUEVO: Validación Paso 3 (SelectTable: pestaña activa debe tener una tabla seleccionada)
+        If TypeOf vistaActual Is Views.SelectTable Then
+            Dim sel As Views.SelectTable = DirectCast(vistaActual, Views.SelectTable)
+            Dim msg As String = Nothing
+            If Not sel.HasSelection(msg) Then
+                MessageBox.Show(msg, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        End If
         If indiceActual < vistas.Count - 1 Then
             indiceActual += 1
             MostrarVistaActual()

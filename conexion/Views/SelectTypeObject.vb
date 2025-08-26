@@ -72,18 +72,21 @@ Namespace Views
             cbDatosMaestros.Location = New Point(20, 30)
             AddHandler cbDatosMaestros.CheckedChanged, AddressOf CheckBox_CheckedChanged
             'cbDatosMaestros.Checked = True
+            cbDatosMaestros.Tag = "Native"
 
             cbDatosTransaccionales = New CheckBox()
             cbDatosTransaccionales.AutoSize = True
             cbDatosTransaccionales.Text = "Documentos transaccionales"
             cbDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
             cbDatosTransaccionales.Location = New Point(20, 60)
+            cbDatosTransaccionales.Tag = "Native"
 
             cbDatosConfiguracion = New CheckBox()
             cbDatosConfiguracion.AutoSize = True
             cbDatosConfiguracion.Text = "Configuración"
             cbDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
             cbDatosConfiguracion.Location = New Point(20, 90)
+            cbDatosConfiguracion.Tag = "Native"
 
             cbUdoDatosMaestros = New CheckBox()
             cbUdoDatosMaestros.AutoSize = True
@@ -91,18 +94,21 @@ Namespace Views
             cbUdoDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
             cbUdoDatosMaestros.Location = New Point(20, 30)
             'cbUdoDatosMaestros.Checked = True
+            cbUdoDatosMaestros.Tag = "UDO"
 
             cbUdoDatosTransaccionales = New CheckBox()
             cbUdoDatosTransaccionales.AutoSize = True
             cbUdoDatosTransaccionales.Text = "UDO Documento"
             cbUdoDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
             cbUdoDatosTransaccionales.Location = New Point(20, 60)
+            cbUdoDatosTransaccionales.Tag = "UDO"
 
             cbUdoDatosConfiguracion = New CheckBox()
             cbUdoDatosConfiguracion.AutoSize = True
             cbUdoDatosConfiguracion.Text = "UDO Ningún objeto"
             cbUdoDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
             cbUdoDatosConfiguracion.Location = New Point(20, 90)
+            cbUdoDatosConfiguracion.Tag = "UDO"
 
             AddHandler cbDatosTransaccionales.CheckedChanged, AddressOf CheckBox_CheckedChanged
             AddHandler cbDatosConfiguracion.CheckedChanged, AddressOf CheckBox_CheckedChanged
@@ -153,17 +159,21 @@ Namespace Views
         Private Sub CheckBox_CheckedChanged(sender As Object, e As EventArgs)
             Dim cb As CheckBox = CType(sender, CheckBox)
             If cb.Checked Then
-                If cb.Parent IsNot Nothing Then
-                    For Each ctrl As Control In cb.Parent.Controls
-                        If TypeOf ctrl Is CheckBox AndAlso ctrl IsNot cb Then
-                            DirectCast(ctrl, CheckBox).Checked = False
-                        End If
-                    Next
+                ' uncheck siblings dentro del mismo contenedor
+                For Each ctrl As Control In cb.Parent.Controls
+                    If TypeOf ctrl Is CheckBox AndAlso ctrl IsNot cb Then
+                        DirectCast(ctrl, CheckBox).Checked = False
+                    End If
+                Next
+
+                Dim scope As String = If(TryCast(cb.Tag, String), "")
+                If scope = "Native" Then
+                    _SelectedOptionNative = cb.Text
+                    SubMain.SelectedOptionNative = _SelectedOptionNative
+                ElseIf scope = "UDO" Then
+                    _SelectedOptionUDO = cb.Text
+                    SubMain.SelectedOptionUDO = _SelectedOptionUDO
                 End If
-                _SelectedOptionNative = cb.Text
-                SubMain.SelectedOptionNative = _SelectedOptionNative
-                _SelectedOptionUDO = cb.Text
-                SubMain.SelectedOptionUDO = _SelectedOptionUDO
             End If
         End Sub
 
