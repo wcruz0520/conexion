@@ -65,13 +65,14 @@ Public Class PrincipalForm
 
         ' Otra opción para mostrar el logo es alojar un PictureBox dentro del
         ' StatusStrip usando un ToolStripControlHost:
-        Dim logoBox As New PictureBox() With {
-            .Image = My.Resources.LogoSS,
-            .SizeMode = PictureBoxSizeMode.Normal,
-            .Size = New Size(30, 20)
-        }
-        Dim host As New ToolStripControlHost(logoBox)
-        StatusStrip1.Items.Add(host)
+
+        'Dim logoBox As New PictureBox() With {
+        '    .Image = My.Resources.LogoSS,
+        '    .SizeMode = PictureBoxSizeMode.Zoom,
+        '    .Size = New Size(StatusStrip1.Height, StatusStrip1.Height)
+        '}
+        'Dim host As New ToolStripControlHost(logoBox)
+        'StatusStrip1.Items.Add(host)
 
         lblPartner.TextAlign = ContentAlignment.MiddleRight
         lblPartner.BackColor = Color.Transparent

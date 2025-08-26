@@ -15,6 +15,14 @@
     End Sub
 
     Private Sub btnAtras_Click(sender As Object, e As EventArgs) Handles btnAtras.Click
+
+        If indiceActual > 0 Then
+            indiceActual -= 1
+            MostrarVistaActual()
+        End If
+    End Sub
+
+    Private Sub btnSiguiente_Click(sender As Object, e As EventArgs) Handles btnSiguiente.Click
         Dim vistaActual As UserControl = vistas(indiceActual)
         If TypeOf vistaActual Is Views.SelectTypeObject Then
             Dim selectView As Views.SelectTypeObject = DirectCast(vistaActual, Views.SelectTypeObject)
@@ -23,13 +31,6 @@
                 Return
             End If
         End If
-        If indiceActual > 0 Then
-            indiceActual -= 1
-            MostrarVistaActual()
-        End If
-    End Sub
-
-    Private Sub btnSiguiente_Click(sender As Object, e As EventArgs) Handles btnSiguiente.Click
         If indiceActual < vistas.Count - 1 Then
             indiceActual += 1
             MostrarVistaActual()
