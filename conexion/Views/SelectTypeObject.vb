@@ -54,6 +54,11 @@ Namespace Views
             panelContent.Padding = New Padding(50, 5, 50, 20)
             panelContent.BackColor = Color.LightGray
 
+            Dim panelSpacer As New Panel()
+            panelSpacer.Dock = DockStyle.Top
+            panelSpacer.Height = 20
+            panelSpacer.BackColor = Color.White
+
             Dim panelContent2 As New Panel()
             panelContent2.Dock = DockStyle.Top
             panelContent2.Height = 130
@@ -64,7 +69,7 @@ Namespace Views
             cbDatosMaestros.AutoSize = True
             cbDatosMaestros.Text = "Datos Maestros"
             cbDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
-            cbDatosMaestros.Location = New Point(20, 40)
+            cbDatosMaestros.Location = New Point(20, 30)
             AddHandler cbDatosMaestros.CheckedChanged, AddressOf CheckBox_CheckedChanged
             'cbDatosMaestros.Checked = True
 
@@ -72,32 +77,32 @@ Namespace Views
             cbDatosTransaccionales.AutoSize = True
             cbDatosTransaccionales.Text = "Documentos transaccionales"
             cbDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
-            cbDatosTransaccionales.Location = New Point(20, 70)
+            cbDatosTransaccionales.Location = New Point(20, 60)
 
             cbDatosConfiguracion = New CheckBox()
             cbDatosConfiguracion.AutoSize = True
             cbDatosConfiguracion.Text = "Configuración"
             cbDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
-            cbDatosConfiguracion.Location = New Point(20, 100)
+            cbDatosConfiguracion.Location = New Point(20, 90)
 
             cbUdoDatosMaestros = New CheckBox()
             cbUdoDatosMaestros.AutoSize = True
             cbUdoDatosMaestros.Text = "UDO Datos Maestros"
             cbUdoDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
-            cbUdoDatosMaestros.Location = New Point(20, 40)
+            cbUdoDatosMaestros.Location = New Point(20, 30)
             'cbUdoDatosMaestros.Checked = True
 
             cbUdoDatosTransaccionales = New CheckBox()
             cbUdoDatosTransaccionales.AutoSize = True
             cbUdoDatosTransaccionales.Text = "UDO Documento"
             cbUdoDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
-            cbUdoDatosTransaccionales.Location = New Point(20, 70)
+            cbUdoDatosTransaccionales.Location = New Point(20, 60)
 
             cbUdoDatosConfiguracion = New CheckBox()
             cbUdoDatosConfiguracion.AutoSize = True
             cbUdoDatosConfiguracion.Text = "UDO Ningún objeto"
             cbUdoDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
-            cbUdoDatosConfiguracion.Location = New Point(20, 100)
+            cbUdoDatosConfiguracion.Location = New Point(20, 90)
 
             AddHandler cbDatosTransaccionales.CheckedChanged, AddressOf CheckBox_CheckedChanged
             AddHandler cbDatosConfiguracion.CheckedChanged, AddressOf CheckBox_CheckedChanged
@@ -105,17 +110,33 @@ Namespace Views
             AddHandler cbUdoDatosTransaccionales.CheckedChanged, AddressOf CheckBox_CheckedChanged
             AddHandler cbUdoDatosConfiguracion.CheckedChanged, AddressOf CheckBox_CheckedChanged
 
+            Dim lblpn1 = New Label()
+            Dim lblpn2 = New Label()
+
+            lblpn1.Text = "Tipo de tabla nativa"
+            lblpn1.Font = New Font("Calibri", 10, FontStyle.Bold)
+            lblpn1.Location = New Point(20, 5)
+            lblpn1.Width = 200
+
+            lblpn2.Text = "Tipo de tabla de usuario"
+            lblpn2.Font = New Font("Calibri", 10, FontStyle.Bold)
+            lblpn2.Location = New Point(20, 5)
+            lblpn2.Width = 200
+
+            panelContent.Controls.Add(lblpn1)
             panelContent.Controls.Add(cbDatosMaestros)
             panelContent.Controls.Add(cbDatosTransaccionales)
             panelContent.Controls.Add(cbDatosConfiguracion)
             cbDatosMaestros.Checked = True
 
+            panelContent2.Controls.Add(lblpn2)
             panelContent2.Controls.Add(cbUdoDatosMaestros)
             panelContent2.Controls.Add(cbUdoDatosTransaccionales)
             panelContent2.Controls.Add(cbUdoDatosConfiguracion)
             cbUdoDatosMaestros.Checked = True
 
             Me.Controls.Add(panelContent2)
+            Me.Controls.Add(panelSpacer)
             Me.Controls.Add(panelContent)
             Me.Controls.Add(panelHeader)
 
