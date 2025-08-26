@@ -57,11 +57,23 @@ Public Class PrincipalForm
         lblServer.TextAlign = ContentAlignment.MiddleLeft
         lblUser.TextAlign = ContentAlignment.MiddleLeft
 
-        lblLogo.TextImageRelation = TextImageRelation.ImageBeforeText
-        lblLogo.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
-        lblPartner.TextAlign = ContentAlignment.MiddleRight
-        lblLogo.Size = New Size(30, 20)
+        'lblLogo.AutoSize = False
+        'lblLogo.ImageScaling = ToolStripItemImageScaling.None
+        'lblLogo.DisplayStyle = ToolStripItemDisplayStyle.Image
+        lblLogo.Size = New Size(50, 20)
+        'lblLogo.Margin = New Padding(0)
 
+        ' Otra opción para mostrar el logo es alojar un PictureBox dentro del
+        ' StatusStrip usando un ToolStripControlHost:
+        Dim logoBox As New PictureBox() With {
+            .Image = My.Resources.LogoSS,
+            .SizeMode = PictureBoxSizeMode.Normal,
+            .Size = New Size(30, 20)
+        }
+        Dim host As New ToolStripControlHost(logoBox)
+        StatusStrip1.Items.Add(host)
+
+        lblPartner.TextAlign = ContentAlignment.MiddleRight
         lblPartner.BackColor = Color.Transparent
 
     End Sub

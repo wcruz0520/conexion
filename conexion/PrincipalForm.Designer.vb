@@ -27,12 +27,12 @@ Partial Class PrincipalForm
         Me.lblConnStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblServer = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblUser = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblPartner = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblLogo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.topStrip = New System.Windows.Forms.ToolStrip()
         Me.btnLogOff = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.btnImport = New System.Windows.Forms.ToolStripButton()
-        Me.lblPartner = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblLogo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusStrip1.SuspendLayout()
         Me.topStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -66,39 +66,6 @@ Partial Class PrincipalForm
         Me.lblUser.Name = "lblUser"
         Me.lblUser.Size = New System.Drawing.Size(0, 20)
         '
-        'topStrip
-        '
-        Me.topStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.topStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLogOff, Me.ToolStripSeparator1, Me.btnImport})
-        Me.topStrip.Location = New System.Drawing.Point(0, 0)
-        Me.topStrip.Name = "topStrip"
-        Me.topStrip.Size = New System.Drawing.Size(1123, 31)
-        Me.topStrip.TabIndex = 4
-        Me.topStrip.Text = "ToolStrip1"
-        '
-        'btnLogOff
-        '
-        Me.btnLogOff.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btnLogOff.Image = CType(resources.GetObject("btnLogOff.Image"), System.Drawing.Image)
-        Me.btnLogOff.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnLogOff.Name = "btnLogOff"
-        Me.btnLogOff.Size = New System.Drawing.Size(29, 28)
-        Me.btnLogOff.Text = "Log"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 31)
-        '
-        'btnImport
-        '
-        Me.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btnImport.Image = CType(resources.GetObject("btnImport.Image"), System.Drawing.Image)
-        Me.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnImport.Name = "btnImport"
-        Me.btnImport.Size = New System.Drawing.Size(29, 28)
-        Me.btnImport.Text = "Importar"
-        '
         'lblPartner
         '
         Me.lblPartner.Name = "lblPartner"
@@ -109,6 +76,40 @@ Partial Class PrincipalForm
         '
         Me.lblLogo.Name = "lblLogo"
         Me.lblLogo.Size = New System.Drawing.Size(0, 20)
+        Me.lblLogo.Visible = False
+        '
+        'topStrip
+        '
+        Me.topStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.topStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLogOff, Me.ToolStripSeparator1, Me.btnImport})
+        Me.topStrip.Location = New System.Drawing.Point(0, 0)
+        Me.topStrip.Name = "topStrip"
+        Me.topStrip.Size = New System.Drawing.Size(1123, 27)
+        Me.topStrip.TabIndex = 4
+        Me.topStrip.Text = "ToolStrip1"
+        '
+        'btnLogOff
+        '
+        Me.btnLogOff.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnLogOff.Image = CType(resources.GetObject("btnLogOff.Image"), System.Drawing.Image)
+        Me.btnLogOff.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnLogOff.Name = "btnLogOff"
+        Me.btnLogOff.Size = New System.Drawing.Size(29, 24)
+        Me.btnLogOff.Text = "Log"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
+        '
+        'btnImport
+        '
+        Me.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.btnImport.Image = CType(resources.GetObject("btnImport.Image"), System.Drawing.Image)
+        Me.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnImport.Name = "btnImport"
+        Me.btnImport.Size = New System.Drawing.Size(29, 24)
+        Me.btnImport.Text = "Importar"
         '
         'PrincipalForm
         '

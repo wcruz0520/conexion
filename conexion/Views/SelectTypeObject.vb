@@ -12,7 +12,8 @@ Namespace Views
         Private cbUdoDatosTransaccionales As CheckBox
         Private cbUdoDatosConfiguracion As CheckBox
 
-        Public SelectedOption As String
+        Public _SelectedOptionNative As String
+        Public _SelectedOptionUDO As String
 
         Public Sub New()
             InitializeComponent()
@@ -118,8 +119,11 @@ Namespace Views
             Me.Controls.Add(panelContent)
             Me.Controls.Add(panelHeader)
 
-            SelectedOption = cbDatosMaestros.Text
-            SubMain.SelectedTypeObject = SelectedOption
+            _SelectedOptionNative = cbDatosMaestros.Text
+            SubMain.SelectedOptionNative = _SelectedOptionNative
+
+            _SelectedOptionUDO = cbUdoDatosMaestros.Text
+            SubMain.SelectedOptionUDO = _SelectedOptionUDO
 
             Me.ResumeLayout(False)
 
@@ -135,9 +139,16 @@ Namespace Views
                         End If
                     Next
                 End If
-                SelectedOption = cb.Text
-                SubMain.SelectedTypeObject = SelectedOption
+                _SelectedOptionNative = cb.Text
+                SubMain.SelectedOptionNative = _SelectedOptionNative
+                _SelectedOptionUDO = cb.Text
+                SubMain.SelectedOptionUDO = _SelectedOptionUDO
             End If
         End Sub
+
+        Public Function HasSelection() As Boolean
+            Return cbDatosMaestros.Checked OrElse cbDatosTransaccionales.Checked OrElse cbDatosConfiguracion.Checked _
+                OrElse cbUdoDatosMaestros.Checked OrElse cbUdoDatosTransaccionales.Checked OrElse cbUdoDatosConfiguracion.Checked
+        End Function
     End Class
 End Namespace

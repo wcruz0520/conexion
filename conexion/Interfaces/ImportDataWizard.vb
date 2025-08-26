@@ -15,6 +15,14 @@
     End Sub
 
     Private Sub btnAtras_Click(sender As Object, e As EventArgs) Handles btnAtras.Click
+        Dim vistaActual As UserControl = vistas(indiceActual)
+        If TypeOf vistaActual Is Views.SelectTypeObject Then
+            Dim selectView As Views.SelectTypeObject = DirectCast(vistaActual, Views.SelectTypeObject)
+            If Not selectView.HasSelection() Then
+                MessageBox.Show("Debe seleccionar al menos un tipo de objeto.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        End If
         If indiceActual > 0 Then
             indiceActual -= 1
             MostrarVistaActual()

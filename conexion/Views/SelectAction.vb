@@ -89,7 +89,7 @@
             End If
         End Sub
         Private Sub UpdateLabel()
-            Sublbl.Text = $"Esta acción se va a realizar sobre {SubMain.SelectedTypeObject}. Para continuar dar clic en ""Siguiente"""
+            Sublbl.Text = $"Seleccionar el objeto tipo {SelectedOptionNative}/{SelectedOptionUDO}. Para continuar dar clic en ""Siguiente"""
         End Sub
         Protected Overrides Sub OnVisibleChanged(e As EventArgs)
             MyBase.OnVisibleChanged(e)

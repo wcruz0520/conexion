@@ -52,7 +52,7 @@ Namespace Views
         End Sub
 
         Private Sub UpdateLabel()
-            Sublbl.Text = $"Paso 3: Seleccionar tabla tipo {SubMain.SelectedTypeObject} que se va {SubMain.SelectedTypeObject2}"
+            Sublbl.Text = $"Paso 3: Seleccionar tabla tipo {SubMain.SelectedOptionNative}/{SubMain.SelectedOptionUDO} que se va {SubMain.SelectedTypeObject2}"
         End Sub
 
         Protected Overrides Sub OnVisibleChanged(e As EventArgs)
