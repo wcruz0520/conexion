@@ -32,7 +32,7 @@ Namespace Views
 
             ' Dummy inicial (puedes llenar desde fuera con SetNativeObjects/SetUDOObjects)
             If _nativeObjects.Count = 0 Then
-                _nativeObjects.AddRange(New String() {"Documents", "Document_Lines", "SerialNumbers"})
+                _nativeObjects.AddRange(New String() {"Documents", "Document_Lines"})
             End If
             If _udoObjects.Count = 0 Then
                 _udoObjects.AddRange(New String() {"@UDO_HEADER", "@UDO_LINES"})

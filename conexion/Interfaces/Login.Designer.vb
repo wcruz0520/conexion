@@ -112,6 +112,7 @@ Partial Class Login
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.pnlHeader)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Name = "Login"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
