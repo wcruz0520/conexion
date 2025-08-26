@@ -13,6 +13,11 @@ Module SubMain
     Public SelectedNativeTableCode As String
     Public SelectedUDOTable As String
     Public SelectedUDOTableCode As String
+    ' ===== UploadFiles state =====
+    Public Upload_SelectedFileKind As Views.UploadFiles.FileKind
+    Public Upload_SelectedDelimiter As String
+    Public Upload_FilesNative As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
+    Public Upload_FilesUDO As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
 
     <STAThread()>
     Sub Main()

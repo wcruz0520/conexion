@@ -7,6 +7,7 @@
             New Views.SelectTypeObject(),
             New Views.SelectAction(),
             New Views.SelectTable(),
+            New Views.UploadFiles(),
             New Views.ExecuteProcess()
         }
         indiceActual = 0

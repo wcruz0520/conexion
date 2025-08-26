@@ -120,6 +120,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ReturnTable.vb" />
     <Compile Include="Interfaces\Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
@@ -179,6 +180,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\SelectTypeObject.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UploadFiles.Designer.vb">
+      <DependentUpon>UploadFiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UploadFiles.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
