@@ -15,7 +15,8 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
-
+            splitNative.SplitterDistance = splitNative.Width \ 2
+            splitUDO.SplitterDistance = splitUDO.Width \ 2
             ' Opciones exactamente como en la UI de referencia
             cboFileType.Items.AddRange(New Object() {
                 "csv (Comma delimited)",
@@ -220,6 +221,7 @@ Namespace Views
             End Using
             Return dt
         End Function
+
     End Class
 End Namespace
 

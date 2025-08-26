@@ -42,7 +42,6 @@ Namespace Views
 
         <System.Diagnostics.DebuggerStepThrough()>
         Private Sub InitializeComponent()
-            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UploadFiles))
             Me.panelHeader = New System.Windows.Forms.Panel()
             Me.lblTitle = New System.Windows.Forms.Label()
             Me.lblHelp = New System.Windows.Forms.Label()
@@ -52,18 +51,18 @@ Namespace Views
             Me.tabs = New System.Windows.Forms.TabControl()
             Me.tabNative = New System.Windows.Forms.TabPage()
             Me.splitNative = New System.Windows.Forms.SplitContainer()
-            Me.tvNative = New System.Windows.Forms.TreeView()
             Me.gridNative = New System.Windows.Forms.DataGridView()
             Me.colNativeObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colNativePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colNativeBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
+            Me.tvNative = New System.Windows.Forms.TreeView()
             Me.tabUDOs = New System.Windows.Forms.TabPage()
             Me.splitUDO = New System.Windows.Forms.SplitContainer()
-            Me.tvUDO = New System.Windows.Forms.TreeView()
             Me.gridUDO = New System.Windows.Forms.DataGridView()
             Me.colUDOObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colUDOPath = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colUDOBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
+            Me.tvUDO = New System.Windows.Forms.TreeView()
             Me.panelHeader.SuspendLayout()
             Me.panelTop.SuspendLayout()
             Me.tabs.SuspendLayout()
@@ -89,53 +88,55 @@ Namespace Views
             Me.panelHeader.Location = New System.Drawing.Point(0, 0)
             Me.panelHeader.Name = "panelHeader"
             Me.panelHeader.Padding = New System.Windows.Forms.Padding(16, 12, 16, 8)
-            Me.panelHeader.Size = New System.Drawing.Size(980, 92)
+            Me.panelHeader.Size = New System.Drawing.Size(980, 40)
             Me.panelHeader.TabIndex = 2
             '
             'lblTitle
             '
             Me.lblTitle.AutoSize = True
-            Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
+            Me.lblTitle.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
             Me.lblTitle.Location = New System.Drawing.Point(0, 0)
             Me.lblTitle.Name = "lblTitle"
-            Me.lblTitle.Size = New System.Drawing.Size(283, 30)
+            Me.lblTitle.Size = New System.Drawing.Size(223, 23)
             Me.lblTitle.TabIndex = 0
-            Me.lblTitle.Text = "Step 4: Select Data Source"
+            Me.lblTitle.Text = "Paso 1: Cargar los archivos."
             '
             'lblHelp
             '
             Me.lblHelp.AutoSize = True
-            Me.lblHelp.Location = New System.Drawing.Point(0, 34)
+            Me.lblHelp.Location = New System.Drawing.Point(3, 19)
             Me.lblHelp.MaximumSize = New System.Drawing.Size(1200, 0)
             Me.lblHelp.Name = "lblHelp"
-            Me.lblHelp.Size = New System.Drawing.Size(517, 85)
+            Me.lblHelp.Size = New System.Drawing.Size(528, 17)
             Me.lblHelp.TabIndex = 1
-            Me.lblHelp.Text = resources.GetString("lblHelp.Text")
+            Me.lblHelp.Text = "No olvidar el tipo de archivo a cargar depende de la opción que escoja más abajo." &
+    ""
             '
             'panelTop
             '
             Me.panelTop.Controls.Add(Me.lblSelect)
             Me.panelTop.Controls.Add(Me.cboFileType)
             Me.panelTop.Dock = System.Windows.Forms.DockStyle.Top
-            Me.panelTop.Location = New System.Drawing.Point(0, 92)
+            Me.panelTop.Location = New System.Drawing.Point(0, 40)
             Me.panelTop.Name = "panelTop"
             Me.panelTop.Padding = New System.Windows.Forms.Padding(16, 6, 16, 6)
-            Me.panelTop.Size = New System.Drawing.Size(980, 42)
+            Me.panelTop.Size = New System.Drawing.Size(980, 36)
             Me.panelTop.TabIndex = 1
             '
             'lblSelect
             '
             Me.lblSelect.AutoSize = True
-            Me.lblSelect.Location = New System.Drawing.Point(16, 12)
+            Me.lblSelect.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.lblSelect.Location = New System.Drawing.Point(324, 13)
             Me.lblSelect.Name = "lblSelect"
-            Me.lblSelect.Size = New System.Drawing.Size(109, 17)
+            Me.lblSelect.Size = New System.Drawing.Size(152, 17)
             Me.lblSelect.TabIndex = 0
-            Me.lblSelect.Text = "Select File Type"
+            Me.lblSelect.Text = "Seleccionar Tipo Archivo"
             '
             'cboFileType
             '
             Me.cboFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-            Me.cboFileType.Location = New System.Drawing.Point(150, 8)
+            Me.cboFileType.Location = New System.Drawing.Point(470, 9)
             Me.cboFileType.Name = "cboFileType"
             Me.cboFileType.Size = New System.Drawing.Size(250, 24)
             Me.cboFileType.TabIndex = 1
@@ -145,10 +146,10 @@ Namespace Views
             Me.tabs.Controls.Add(Me.tabNative)
             Me.tabs.Controls.Add(Me.tabUDOs)
             Me.tabs.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.tabs.Location = New System.Drawing.Point(0, 134)
+            Me.tabs.Location = New System.Drawing.Point(0, 76)
             Me.tabs.Name = "tabs"
             Me.tabs.SelectedIndex = 0
-            Me.tabs.Size = New System.Drawing.Size(980, 426)
+            Me.tabs.Size = New System.Drawing.Size(980, 484)
             Me.tabs.TabIndex = 0
             '
             'tabNative
@@ -157,7 +158,7 @@ Namespace Views
             Me.tabNative.Location = New System.Drawing.Point(4, 25)
             Me.tabNative.Name = "tabNative"
             Me.tabNative.Padding = New System.Windows.Forms.Padding(8)
-            Me.tabNative.Size = New System.Drawing.Size(972, 397)
+            Me.tabNative.Size = New System.Drawing.Size(972, 455)
             Me.tabNative.TabIndex = 0
             Me.tabNative.Text = "Nativas"
             Me.tabNative.UseVisualStyleBackColor = True
@@ -170,24 +171,16 @@ Namespace Views
             '
             'splitNative.Panel1
             '
-            Me.splitNative.Panel1.Controls.Add(Me.tvNative)
+            Me.splitNative.Panel1.Controls.Add(Me.gridNative)
             Me.splitNative.Panel1.Padding = New System.Windows.Forms.Padding(0, 4, 8, 0)
             '
             'splitNative.Panel2
             '
-            Me.splitNative.Panel2.Controls.Add(Me.gridNative)
+            Me.splitNative.Panel2.Controls.Add(Me.tvNative)
             Me.splitNative.Panel2.Padding = New System.Windows.Forms.Padding(8, 4, 0, 0)
-            Me.splitNative.Size = New System.Drawing.Size(956, 381)
-            Me.splitNative.SplitterDistance = 771
+            Me.splitNative.Size = New System.Drawing.Size(956, 439)
+            Me.splitNative.SplitterDistance = 478
             Me.splitNative.TabIndex = 0
-            '
-            'tvNative
-            '
-            Me.tvNative.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.tvNative.Location = New System.Drawing.Point(0, 4)
-            Me.tvNative.Name = "tvNative"
-            Me.tvNative.Size = New System.Drawing.Size(763, 377)
-            Me.tvNative.TabIndex = 0
             '
             'gridNative
             '
@@ -197,11 +190,11 @@ Namespace Views
             Me.gridNative.ColumnHeadersHeight = 29
             Me.gridNative.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colNativeObject, Me.colNativePath, Me.colNativeBrowse})
             Me.gridNative.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gridNative.Location = New System.Drawing.Point(8, 4)
+            Me.gridNative.Location = New System.Drawing.Point(0, 4)
             Me.gridNative.Name = "gridNative"
             Me.gridNative.RowHeadersVisible = False
             Me.gridNative.RowHeadersWidth = 51
-            Me.gridNative.Size = New System.Drawing.Size(173, 377)
+            Me.gridNative.Size = New System.Drawing.Size(470, 435)
             Me.gridNative.TabIndex = 0
             '
             'colNativeObject
@@ -225,13 +218,21 @@ Namespace Views
             Me.colNativeBrowse.Text = "..."
             Me.colNativeBrowse.UseColumnTextForButtonValue = True
             '
+            'tvNative
+            '
+            Me.tvNative.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.tvNative.Location = New System.Drawing.Point(8, 4)
+            Me.tvNative.Name = "tvNative"
+            Me.tvNative.Size = New System.Drawing.Size(466, 435)
+            Me.tvNative.TabIndex = 0
+            '
             'tabUDOs
             '
             Me.tabUDOs.Controls.Add(Me.splitUDO)
             Me.tabUDOs.Location = New System.Drawing.Point(4, 25)
             Me.tabUDOs.Name = "tabUDOs"
             Me.tabUDOs.Padding = New System.Windows.Forms.Padding(8)
-            Me.tabUDOs.Size = New System.Drawing.Size(972, 397)
+            Me.tabUDOs.Size = New System.Drawing.Size(972, 431)
             Me.tabUDOs.TabIndex = 1
             Me.tabUDOs.Text = "UDOs"
             Me.tabUDOs.UseVisualStyleBackColor = True
@@ -244,24 +245,16 @@ Namespace Views
             '
             'splitUDO.Panel1
             '
-            Me.splitUDO.Panel1.Controls.Add(Me.tvUDO)
+            Me.splitUDO.Panel1.Controls.Add(Me.gridUDO)
             Me.splitUDO.Panel1.Padding = New System.Windows.Forms.Padding(0, 4, 8, 0)
             '
             'splitUDO.Panel2
             '
-            Me.splitUDO.Panel2.Controls.Add(Me.gridUDO)
+            Me.splitUDO.Panel2.Controls.Add(Me.tvUDO)
             Me.splitUDO.Panel2.Padding = New System.Windows.Forms.Padding(8, 4, 0, 0)
-            Me.splitUDO.Size = New System.Drawing.Size(956, 381)
-            Me.splitUDO.SplitterDistance = 771
+            Me.splitUDO.Size = New System.Drawing.Size(956, 415)
+            Me.splitUDO.SplitterDistance = 478
             Me.splitUDO.TabIndex = 0
-            '
-            'tvUDO
-            '
-            Me.tvUDO.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.tvUDO.Location = New System.Drawing.Point(0, 4)
-            Me.tvUDO.Name = "tvUDO"
-            Me.tvUDO.Size = New System.Drawing.Size(763, 377)
-            Me.tvUDO.TabIndex = 0
             '
             'gridUDO
             '
@@ -271,11 +264,11 @@ Namespace Views
             Me.gridUDO.ColumnHeadersHeight = 29
             Me.gridUDO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colUDOObject, Me.colUDOPath, Me.colUDOBrowse})
             Me.gridUDO.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gridUDO.Location = New System.Drawing.Point(8, 4)
+            Me.gridUDO.Location = New System.Drawing.Point(0, 4)
             Me.gridUDO.Name = "gridUDO"
             Me.gridUDO.RowHeadersVisible = False
             Me.gridUDO.RowHeadersWidth = 51
-            Me.gridUDO.Size = New System.Drawing.Size(173, 377)
+            Me.gridUDO.Size = New System.Drawing.Size(470, 411)
             Me.gridUDO.TabIndex = 0
             '
             'colUDOObject
@@ -298,6 +291,14 @@ Namespace Views
             Me.colUDOBrowse.Name = "colUDOBrowse"
             Me.colUDOBrowse.Text = "..."
             Me.colUDOBrowse.UseColumnTextForButtonValue = True
+            '
+            'tvUDO
+            '
+            Me.tvUDO.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.tvUDO.Location = New System.Drawing.Point(8, 4)
+            Me.tvUDO.Name = "tvUDO"
+            Me.tvUDO.Size = New System.Drawing.Size(466, 411)
+            Me.tvUDO.TabIndex = 0
             '
             'UploadFiles
             '

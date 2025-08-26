@@ -29,14 +29,14 @@ Partial Class ImportDataWizard
         '
         'panelPrincipal
         '
-        Me.panelPrincipal.Location = New System.Drawing.Point(14, 12)
+        Me.panelPrincipal.Location = New System.Drawing.Point(12, 12)
         Me.panelPrincipal.Name = "panelPrincipal"
-        Me.panelPrincipal.Size = New System.Drawing.Size(774, 368)
+        Me.panelPrincipal.Size = New System.Drawing.Size(978, 487)
         Me.panelPrincipal.TabIndex = 1
         '
         'btnSiguiente
         '
-        Me.btnSiguiente.Location = New System.Drawing.Point(657, 395)
+        Me.btnSiguiente.Location = New System.Drawing.Point(859, 505)
         Me.btnSiguiente.Name = "btnSiguiente"
         Me.btnSiguiente.Size = New System.Drawing.Size(131, 33)
         Me.btnSiguiente.TabIndex = 4
@@ -45,7 +45,7 @@ Partial Class ImportDataWizard
         '
         'btnAtras
         '
-        Me.btnAtras.Location = New System.Drawing.Point(458, 395)
+        Me.btnAtras.Location = New System.Drawing.Point(693, 505)
         Me.btnAtras.Name = "btnAtras"
         Me.btnAtras.Size = New System.Drawing.Size(140, 33)
         Me.btnAtras.TabIndex = 3
@@ -56,7 +56,7 @@ Partial Class ImportDataWizard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1002, 550)
         Me.Controls.Add(Me.btnSiguiente)
         Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.panelPrincipal)

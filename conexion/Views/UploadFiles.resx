@@ -117,11 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblHelp.Text" xml:space="preserve">
-    <value>To define data sources for business objects, do the following:
-1. From the "Select File Type" dropdown list, select a file delimiter character type.
-2. Select parent or child business object(s) to be imported.
-3. Choose the adjacent browse button to define the navigation path.
-Do not change the position of or delete any column from the standard templates.</value>
-  </data>
 </root>
