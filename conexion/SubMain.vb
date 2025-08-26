@@ -19,7 +19,7 @@ Module SubMain
         guardaLog = New Log
         NombreClase = "SubMain"
         BaseForm = New PrincipalForm
-        BaseForm.Text = "Data Management"
+        BaseForm.Text = "SAP Business One Data Transfer WorkBench for UDO"
 
         'If cnSAP.conectSAP() Then
 

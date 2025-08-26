@@ -31,6 +31,8 @@ Partial Class PrincipalForm
         Me.btnLogOff = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.btnImport = New System.Windows.Forms.ToolStripButton()
+        Me.lblPartner = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblLogo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusStrip1.SuspendLayout()
         Me.topStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -38,7 +40,7 @@ Partial Class PrincipalForm
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblConnStatus, Me.lblServer, Me.lblUser})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblConnStatus, Me.lblServer, Me.lblUser, Me.lblPartner, Me.lblLogo})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 729)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(1123, 26)
@@ -51,24 +53,18 @@ Partial Class PrincipalForm
         Me.lblConnStatus.Name = "lblConnStatus"
         Me.lblConnStatus.Size = New System.Drawing.Size(99, 20)
         Me.lblConnStatus.Text = "Disconnected"
-        Me.lblConnStatus.TextImageRelation = TextImageRelation.ImageBeforeText
-        Me.lblConnStatus.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
         '
         'lblServer
         '
         Me.lblServer.BackColor = System.Drawing.Color.Transparent
         Me.lblServer.Name = "lblServer"
         Me.lblServer.Size = New System.Drawing.Size(0, 20)
-        Me.lblServer.TextImageRelation = TextImageRelation.ImageBeforeText
-        Me.lblServer.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
         '
         'lblUser
         '
         Me.lblUser.BackColor = System.Drawing.Color.Transparent
         Me.lblUser.Name = "lblUser"
         Me.lblUser.Size = New System.Drawing.Size(0, 20)
-        Me.lblUser.TextImageRelation = TextImageRelation.ImageBeforeText
-        Me.lblUser.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
         '
         'topStrip
         '
@@ -76,7 +72,7 @@ Partial Class PrincipalForm
         Me.topStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLogOff, Me.ToolStripSeparator1, Me.btnImport})
         Me.topStrip.Location = New System.Drawing.Point(0, 0)
         Me.topStrip.Name = "topStrip"
-        Me.topStrip.Size = New System.Drawing.Size(1123, 27)
+        Me.topStrip.Size = New System.Drawing.Size(1123, 31)
         Me.topStrip.TabIndex = 4
         Me.topStrip.Text = "ToolStrip1"
         '
@@ -86,13 +82,13 @@ Partial Class PrincipalForm
         Me.btnLogOff.Image = CType(resources.GetObject("btnLogOff.Image"), System.Drawing.Image)
         Me.btnLogOff.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLogOff.Name = "btnLogOff"
-        Me.btnLogOff.Size = New System.Drawing.Size(29, 24)
+        Me.btnLogOff.Size = New System.Drawing.Size(29, 28)
         Me.btnLogOff.Text = "Log"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 31)
         '
         'btnImport
         '
@@ -100,8 +96,19 @@ Partial Class PrincipalForm
         Me.btnImport.Image = CType(resources.GetObject("btnImport.Image"), System.Drawing.Image)
         Me.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnImport.Name = "btnImport"
-        Me.btnImport.Size = New System.Drawing.Size(29, 24)
+        Me.btnImport.Size = New System.Drawing.Size(29, 28)
         Me.btnImport.Text = "Importar"
+        '
+        'lblPartner
+        '
+        Me.lblPartner.Name = "lblPartner"
+        Me.lblPartner.Size = New System.Drawing.Size(86, 20)
+        Me.lblPartner.Text = "Powered by"
+        '
+        'lblLogo
+        '
+        Me.lblLogo.Name = "lblLogo"
+        Me.lblLogo.Size = New System.Drawing.Size(0, 20)
         '
         'PrincipalForm
         '
@@ -132,4 +139,6 @@ Partial Class PrincipalForm
     Friend WithEvents lblConnStatus As ToolStripStatusLabel
     Friend WithEvents lblServer As ToolStripStatusLabel
     Friend WithEvents lblUser As ToolStripStatusLabel
+    Friend WithEvents lblPartner As ToolStripStatusLabel
+    Friend WithEvents lblLogo As ToolStripStatusLabel
 End Class

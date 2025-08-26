@@ -11,3 +11,4 @@ C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.pdb
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.PrincipalForm.resources
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.ImportDataWizard.resources
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.Login.resources
+C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.vbproj.AssemblyReference.cache

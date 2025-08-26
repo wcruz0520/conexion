@@ -214,6 +214,7 @@
     <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Recursos\LogoSS.png" />
     <Content Include="Recursos\puntorojo.png" />
     <Content Include="Recursos\puntoverde.png" />
     <Content Include="Recursos\server.png" />

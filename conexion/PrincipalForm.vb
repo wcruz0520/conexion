@@ -28,6 +28,7 @@ Public Class PrincipalForm
             lblConnStatus.Image = My.Resources.puntorojo
             lblServer.Image = My.Resources.server
             lblUser.Image = My.Resources.user
+            lblLogo.Image = My.Resources.LogoSS
         Catch ex As Exception
 
         End Try
@@ -55,6 +56,11 @@ Public Class PrincipalForm
         lblConnStatus.TextAlign = ContentAlignment.MiddleLeft
         lblServer.TextAlign = ContentAlignment.MiddleLeft
         lblUser.TextAlign = ContentAlignment.MiddleLeft
+
+        lblLogo.TextImageRelation = TextImageRelation.ImageBeforeText
+        lblLogo.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText
+        lblPartner.TextAlign = ContentAlignment.MiddleRight
+        lblLogo.Size = New Size(30, 20)
 
     End Sub
 

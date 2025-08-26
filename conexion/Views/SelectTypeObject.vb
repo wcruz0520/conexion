@@ -8,6 +8,9 @@ Namespace Views
         Private rbDatosMaestros As RadioButton
         Private rbDatosTransaccionales As RadioButton
         Private rbDatosConfiguracion As RadioButton
+        Private rbUdoDatosMaestros As RadioButton
+        Private rbUdoDatosTransaccionales As RadioButton
+        Private rbUdoDatosConfiguracion As RadioButton
         Public SelectedOption As String
 
         Public Sub New()
@@ -43,38 +46,70 @@ Namespace Views
 
             ' Panel para el resto de los elementos
             Dim panelContent As New Panel()
-            panelContent.Dock = DockStyle.Fill
-            panelContent.Padding = New Padding(50, 20, 50, 20)
+            panelContent.Dock = DockStyle.Top
+            panelContent.Padding = New Padding(50, 5, 50, 20)
             panelContent.BackColor = Color.LightGray
+
+            Dim panelContent2 As New Panel()
+            panelContent2.Dock = DockStyle.Bottom
+            panelContent2.Padding = New Padding(50, 5, 50, 30)
+            panelContent2.BackColor = Color.LightGray
 
             rbDatosMaestros = New RadioButton()
             rbDatosMaestros.AutoSize = True
-            rbDatosMaestros.Text = "UDO tipo Datos Maestros"
+            rbDatosMaestros.Text = "Datos Maestros"
             rbDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
             rbDatosMaestros.Location = New Point(20, 40)
             rbDatosMaestros.Checked = True
 
             rbDatosTransaccionales = New RadioButton()
             rbDatosTransaccionales.AutoSize = True
-            rbDatosTransaccionales.Text = "UDO tipo Documento"
+            rbDatosTransaccionales.Text = "Documentos transaccionales"
             rbDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
             rbDatosTransaccionales.Location = New Point(20, 70)
 
             rbDatosConfiguracion = New RadioButton()
             rbDatosConfiguracion.AutoSize = True
-            rbDatosConfiguracion.Text = "UDO tipo Ningún objeto"
+            rbDatosConfiguracion.Text = "Configuración"
             rbDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
             rbDatosConfiguracion.Location = New Point(20, 100)
+
+            rbUdoDatosMaestros = New RadioButton()
+            rbUdoDatosMaestros.AutoSize = True
+            rbUdoDatosMaestros.Text = "UDO Datos Maestros"
+            rbUdoDatosMaestros.Font = New Font("Calibri", 10, FontStyle.Regular)
+            rbUdoDatosMaestros.Location = New Point(20, 40)
+            rbUdoDatosMaestros.Checked = True
+
+            rbUdoDatosTransaccionales = New RadioButton()
+            rbUdoDatosTransaccionales.AutoSize = True
+            rbUdoDatosTransaccionales.Text = "UDO Documento"
+            rbUdoDatosTransaccionales.Font = New Font("Calibri", 10, FontStyle.Regular)
+            rbUdoDatosTransaccionales.Location = New Point(20, 70)
+
+            rbUdoDatosConfiguracion = New RadioButton()
+            rbUdoDatosConfiguracion.AutoSize = True
+            rbUdoDatosConfiguracion.Text = "UDO Ningún objeto"
+            rbUdoDatosConfiguracion.Font = New Font("Calibri", 10, FontStyle.Regular)
+            rbUdoDatosConfiguracion.Location = New Point(20, 100)
 
             AddHandler rbDatosMaestros.CheckedChanged, AddressOf RadioButton_CheckedChanged
             AddHandler rbDatosTransaccionales.CheckedChanged, AddressOf RadioButton_CheckedChanged
             AddHandler rbDatosConfiguracion.CheckedChanged, AddressOf RadioButton_CheckedChanged
+            AddHandler rbUdoDatosMaestros.CheckedChanged, AddressOf RadioButton_CheckedChanged
+            AddHandler rbUdoDatosTransaccionales.CheckedChanged, AddressOf RadioButton_CheckedChanged
+            AddHandler rbUdoDatosConfiguracion.CheckedChanged, AddressOf RadioButton_CheckedChanged
+
+            panelContent2.Controls.Add(rbUdoDatosMaestros)
+            panelContent2.Controls.Add(rbUdoDatosTransaccionales)
+            panelContent2.Controls.Add(rbUdoDatosConfiguracion)
 
             panelContent.Controls.Add(rbDatosMaestros)
             panelContent.Controls.Add(rbDatosTransaccionales)
             panelContent.Controls.Add(rbDatosConfiguracion)
 
             Me.Controls.Add(panelContent)
+            Me.Controls.Add(panelContent2)
             Me.Controls.Add(panelHeader)
 
             SelectedOption = rbDatosMaestros.Text
