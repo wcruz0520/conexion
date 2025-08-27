@@ -13,6 +13,8 @@ Namespace Views
 
         Private ReadOnly _nativeCategories As New List(Of NativeCategory)()
         Private ReadOnly _udoCategories As New List(Of UDOCategories)()
+        Private ReadOnly _nativePaths As New Dictionary(Of String, Dictionary(Of String, String))(StringComparer.OrdinalIgnoreCase)
+        Private ReadOnly _udoPaths As New Dictionary(Of String, Dictionary(Of String, String))(StringComparer.OrdinalIgnoreCase)
 
         Public Sub New()
             InitializeComponent()
@@ -66,16 +68,7 @@ Namespace Views
                 Next
             Next
             tvNative.ExpandAll()
-
             gridNative.Rows.Clear()
-            For Each cat In _nativeCategories
-                For Each s In cat.Objects
-                    For Each tbl In MappingUploadTables.GetNativeTables(s)
-                        Dim idx = gridNative.Rows.Add(tbl, "", "...")
-                        gridNative.Rows(idx).Tag = s
-                    Next
-                Next
-            Next
         End Sub
 
         Private Sub BuildUDO()
@@ -88,49 +81,91 @@ Namespace Views
                 Next
             Next
             tvUDO.ExpandAll()
-
             gridUDO.Rows.Clear()
-            For Each cat In _udoCategories
-                For Each s In cat.Objects
-                    For Each tbl In MappingUploadTables.GetUDOTables(s)
-                        Dim idx = gridUDO.Rows.Add(tbl, "", "...")
-                        gridUDO.Rows(idx).Tag = s
-                    Next
-                Next
+        End Sub
+
+        Private Sub ShowNativeTables(objName As String)
+            gridNative.Rows.Clear()
+            If String.IsNullOrWhiteSpace(objName) Then Return
+            Dim paths As Dictionary(Of String, String) = Nothing
+            _nativePaths.TryGetValue(objName, paths)
+            For Each tbl In MappingUploadTables.GetNativeTables(objName)
+                Dim current As String = Nothing
+                If paths IsNot Nothing Then paths.TryGetValue(tbl, current)
+                Dim idx = gridNative.Rows.Add(tbl, current, "...")
+                gridNative.Rows(idx).Tag = objName
+                gridNative.Rows(idx).Cells("colNativePath").Tag = current
+            Next
+        End Sub
+
+        Private Sub ShowUDOTables(objName As String)
+            gridUDO.Rows.Clear()
+            If String.IsNullOrWhiteSpace(objName) Then Return
+            Dim paths As Dictionary(Of String, String) = Nothing
+            _udoPaths.TryGetValue(objName, paths)
+            For Each tbl In MappingUploadTables.GetUDOTables(objName)
+                Dim current As String = Nothing
+                If paths IsNot Nothing Then paths.TryGetValue(tbl, current)
+                Dim idx = gridUDO.Rows.Add(tbl, current, "...")
+                gridUDO.Rows(idx).Tag = objName
+                gridUDO.Rows(idx).Cells("colUDOPath").Tag = current
             Next
         End Sub
 
         ' ========== Navegación/selección ==========
         Private Sub tv_AfterSelect(sender As Object, e As TreeViewEventArgs)
             Dim tv = DirectCast(sender, TreeView)
-            Dim grid As DataGridView = If(tv Is tvNative, gridNative, gridUDO)
-            If e.Node Is Nothing OrElse e.Node.Nodes.Count > 0 Then Return
-            For Each r As DataGridViewRow In grid.Rows
-                If CStr(r.Tag.Value) = e.Node.Text Then
-                    r.Selected = True
-                    grid.CurrentCell = r.Cells(1)
-                    Exit For
-                End If
-            Next
+            Dim objName As String = Nothing
+            If e.Node IsNot Nothing AndAlso e.Node.Nodes.Count = 0 Then
+                objName = e.Node.Text
+            End If
+
+            If tv Is tvNative Then
+                ShowNativeTables(objName)
+            Else
+                ShowUDOTables(objName)
+            End If
         End Sub
 
         Private Sub gridNative_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
             If e.RowIndex < 0 OrElse e.ColumnIndex <> gridNative.Columns("colNativeBrowse").Index Then Return
-            Dim path = BrowseForSelected()
-            If path IsNot Nothing Then
-                Dim cell = gridNative.Rows(e.RowIndex).Cells("colNativePath")
-                cell.Tag = path
-                cell.Value = path.ToString
+            Dim _path = BrowseForSelected()
+            If _path IsNot Nothing Then
+                Dim row = gridNative.Rows(e.RowIndex)
+                Dim objName = CStr(row.Tag)
+                Dim tbl = CStr(row.Cells("colNativeObject").Value)
+                Dim cell = row.Cells("colNativePath")
+                cell.Tag = _path
+                cell.Value = Path.GetFileName(CStr(_path))
+                cell.ToolTipText = CStr(_path)
+
+                Dim paths As Dictionary(Of String, String) = Nothing
+                If Not _nativePaths.TryGetValue(objName, paths) Then
+                    paths = New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
+                    _nativePaths(objName) = paths
+                End If
+                paths(tbl) = _path
             End If
         End Sub
 
         Private Sub gridUDO_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
             If e.RowIndex < 0 OrElse e.ColumnIndex <> gridUDO.Columns("colUDOBrowse").Index Then Return
-            Dim path = BrowseForSelected()
-            If path IsNot Nothing Then
-                Dim cell = gridUDO.Rows(e.RowIndex).Cells("colUDOPath")
-                cell.Tag = path
-                cell.Value = path.ToString
+            Dim _path = BrowseForSelected()
+            If _path IsNot Nothing Then
+                Dim row = gridUDO.Rows(e.RowIndex)
+                Dim objName = CStr(row.Tag)
+                Dim tbl = CStr(row.Cells("colUDOObject").Value)
+                Dim cell = row.Cells("colUDOPath")
+                cell.Tag = _path
+                cell.Value = Path.GetFileName(CStr(_path))
+                cell.ToolTipText = CStr(_path)
+
+                Dim paths As Dictionary(Of String, String) = Nothing
+                If Not _udoPaths.TryGetValue(objName, paths) Then
+                    paths = New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
+                    _udoPaths(objName) = paths
+                End If
+                paths(tbl) = _path
             End If
         End Sub
 
@@ -166,6 +201,7 @@ Namespace Views
         Public Sub SetNativeObjects(categories As IEnumerable(Of NativeCategory))
             _nativeCategories.Clear()
             _nativeCategories.AddRange(categories)
+            _nativePaths.Clear()
             BuildNative()
         End Sub
 
@@ -185,6 +221,7 @@ Namespace Views
             Dim cat As New NativeCategory("General")
             cat.Objects.AddRange(objs)
             _nativeCategories.Add(cat)
+            _nativePaths.Clear()
             BuildNative()
         End Sub
 
@@ -199,6 +236,7 @@ Namespace Views
             Dim cat As New UDOCategories("General")
             cat.Objects.AddRange(objs)
             _udoCategories.Add(cat)
+            _udoPaths.Clear()
             BuildUDO()
         End Sub
 
@@ -215,20 +253,22 @@ Namespace Views
         ' Devuelven los mapas Objeto -> Ruta
         Public Function GetSelectedFilesNative() As Dictionary(Of String, String)
             Dim map As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
-            For Each row As DataGridViewRow In gridNative.Rows
-                Dim objName = CStr(row.Cells("colNativeObject").Value)
-                Dim path = CStr(row.Cells("colNativePath").Value)
-                If Not String.IsNullOrWhiteSpace(path) Then map(objName) = path
+            For Each obj In _nativePaths.Values
+                For Each kv In obj
+                    If Not String.IsNullOrWhiteSpace(kv.Value) Then map(kv.Key) = kv.Value
+                Next
+
             Next
             Return map
         End Function
 
         Public Function GetSelectedFilesUDOs() As Dictionary(Of String, String)
             Dim map As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
-            For Each row As DataGridViewRow In gridUDO.Rows
-                Dim objName = CStr(row.Cells("colUDOObject").Value)
-                Dim path = CStr(row.Cells("colUDOPath").Value)
-                If Not String.IsNullOrWhiteSpace(path) Then map(objName) = path
+            For Each obj In _udoPaths.Values
+                For Each kv In obj
+                    If Not String.IsNullOrWhiteSpace(kv.Value) Then map(kv.Key) = kv.Value
+                Next
+
             Next
             Return map
         End Function

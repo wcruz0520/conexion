@@ -46,9 +46,6 @@ Namespace Views
             Me.tabNative = New System.Windows.Forms.TabPage()
             Me.splitNative = New System.Windows.Forms.SplitContainer()
             Me.gridNative = New System.Windows.Forms.DataGridView()
-            Me.colNativeObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
-            Me.colNativePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
-            Me.colNativeBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
             Me.tvNative = New System.Windows.Forms.TreeView()
             Me.tabUDOs = New System.Windows.Forms.TabPage()
             Me.splitUDO = New System.Windows.Forms.SplitContainer()
@@ -57,6 +54,9 @@ Namespace Views
             Me.colUDOPath = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colUDOBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
             Me.tvUDO = New System.Windows.Forms.TreeView()
+            Me.colNativeObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
+            Me.colNativePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
+            Me.colNativeBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
             Me.panelHeader.SuspendLayout()
             Me.panelTop.SuspendLayout()
             Me.tabs.SuspendLayout()
@@ -194,30 +194,6 @@ Namespace Views
             Me.gridNative.Size = New System.Drawing.Size(402, 435)
             Me.gridNative.TabIndex = 0
             '
-            'colNativeObject
-            '
-            Me.colNativeObject.FillWeight = 133.9572!
-            Me.colNativeObject.HeaderText = "Tabla"
-            Me.colNativeObject.MinimumWidth = 6
-            Me.colNativeObject.Name = "colNativeObject"
-            Me.colNativeObject.ReadOnly = True
-            '
-            'colNativePath
-            '
-            Me.colNativePath.FillWeight = 133.9572!
-            Me.colNativePath.HeaderText = "File Path"
-            Me.colNativePath.MinimumWidth = 6
-            Me.colNativePath.Name = "colNativePath"
-            '
-            'colNativeBrowse
-            '
-            Me.colNativeBrowse.FillWeight = 32.08556!
-            Me.colNativeBrowse.HeaderText = ""
-            Me.colNativeBrowse.MinimumWidth = 6
-            Me.colNativeBrowse.Name = "colNativeBrowse"
-            Me.colNativeBrowse.Text = "..."
-            Me.colNativeBrowse.UseColumnTextForButtonValue = True
-            '
             'tvNative
             '
             Me.tvNative.Dock = System.Windows.Forms.DockStyle.Fill
@@ -307,6 +283,30 @@ Namespace Views
             Me.tvUDO.Name = "tvUDO"
             Me.tvUDO.Size = New System.Drawing.Size(466, 435)
             Me.tvUDO.TabIndex = 0
+            '
+            'colNativeObject
+            '
+            Me.colNativeObject.FillWeight = 133.9572!
+            Me.colNativeObject.HeaderText = "Tabla"
+            Me.colNativeObject.MinimumWidth = 6
+            Me.colNativeObject.Name = "colNativeObject"
+            Me.colNativeObject.ReadOnly = True
+            '
+            'colNativePath
+            '
+            Me.colNativePath.FillWeight = 133.9572!
+            Me.colNativePath.HeaderText = "Ruta Archivo"
+            Me.colNativePath.MinimumWidth = 6
+            Me.colNativePath.Name = "colNativePath"
+            '
+            'colNativeBrowse
+            '
+            Me.colNativeBrowse.FillWeight = 32.08556!
+            Me.colNativeBrowse.HeaderText = ""
+            Me.colNativeBrowse.MinimumWidth = 6
+            Me.colNativeBrowse.Name = "colNativeBrowse"
+            Me.colNativeBrowse.Text = "..."
+            Me.colNativeBrowse.UseColumnTextForButtonValue = True
             '
             'UploadFiles
             '
