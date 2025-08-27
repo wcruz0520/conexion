@@ -11,7 +11,7 @@ Namespace Views
         End Enum
 
         Private ReadOnly _nativeCategories As New List(Of NativeCategory)()
-        Private ReadOnly _udoObjects As New List(Of String)()
+        Private ReadOnly _udoCategories As New List(Of UDOCategories)()
 
         Public Sub New()
             InitializeComponent()
@@ -37,8 +37,8 @@ Namespace Views
             If _nativeCategories.Count = 0 Then
                 _nativeCategories.AddRange(MappingNativeCategories.GetDefault())
             End If
-            If _udoObjects.Count = 0 Then
-                _udoObjects.AddRange(New String() {"@UDO_HEADER", "@UDO_LINES"})
+            If _udoCategories.Count = 0 Then
+                _udoCategories.AddRange(MappingUdoCategories.GetDefault())
             End If
 
             BuildNative()
@@ -78,15 +78,20 @@ Namespace Views
         Private Sub BuildUDO()
             tvUDO.Nodes.Clear()
             Dim root = tvUDO.Nodes.Add("Business Objects")
-            For Each s In _udoObjects
-                root.Nodes.Add(s)
+            For Each cat In _udoCategories
+                Dim catNode = root.Nodes.Add(cat.Name)
+                For Each s In cat.Objects
+                    catNode.Nodes.Add(s)
+                Next
             Next
             tvUDO.ExpandAll()
 
             gridUDO.Rows.Clear()
-            For Each s In _udoObjects
-                Dim idx = gridUDO.Rows.Add(s, "", "...")
-                gridUDO.Rows(idx).Tag = s
+            For Each cat In _udoCategories
+                For Each s In cat.Objects
+                    Dim idx = gridUDO.Rows.Add(s, "", "...")
+                    gridUDO.Rows(idx).Tag = s
+                Next
             Next
         End Sub
 
@@ -170,9 +175,17 @@ Namespace Views
             BuildNative()
         End Sub
 
+        Public Sub SetUDOObjects(categories As IEnumerable(Of UDOCategories))
+            _udoCategories.Clear()
+            _udoCategories.AddRange(categories)
+            BuildUDO()
+        End Sub
+
         Public Sub SetUDOObjects(objs As IEnumerable(Of String))
-            _udoObjects.Clear()
-            _udoObjects.AddRange(objs)
+            _udoCategories.Clear()
+            Dim cat As New UDOCategories("General")
+            cat.Objects.AddRange(objs)
+            _udoCategories.Add(cat)
             BuildUDO()
         End Sub
 

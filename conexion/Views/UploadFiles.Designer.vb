@@ -46,17 +46,17 @@ Namespace Views
             Me.tabNative = New System.Windows.Forms.TabPage()
             Me.splitNative = New System.Windows.Forms.SplitContainer()
             Me.gridNative = New System.Windows.Forms.DataGridView()
+            Me.colNativeObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
+            Me.colNativePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
+            Me.colNativeBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
             Me.tvNative = New System.Windows.Forms.TreeView()
             Me.tabUDOs = New System.Windows.Forms.TabPage()
             Me.splitUDO = New System.Windows.Forms.SplitContainer()
             Me.gridUDO = New System.Windows.Forms.DataGridView()
-            Me.tvUDO = New System.Windows.Forms.TreeView()
             Me.colUDOObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colUDOPath = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colUDOBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
-            Me.colNativeObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
-            Me.colNativePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
-            Me.colNativeBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
+            Me.tvUDO = New System.Windows.Forms.TreeView()
             Me.panelHeader.SuspendLayout()
             Me.panelTop.SuspendLayout()
             Me.tabs.SuspendLayout()
@@ -120,10 +120,10 @@ Namespace Views
             'lblSelect
             '
             Me.lblSelect.AutoSize = True
-            Me.lblSelect.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.lblSelect.Location = New System.Drawing.Point(432, 13)
+            Me.lblSelect.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.lblSelect.Location = New System.Drawing.Point(424, 13)
             Me.lblSelect.Name = "lblSelect"
-            Me.lblSelect.Size = New System.Drawing.Size(152, 17)
+            Me.lblSelect.Size = New System.Drawing.Size(159, 18)
             Me.lblSelect.TabIndex = 0
             Me.lblSelect.Text = "Seleccionar Tipo Archivo"
             '
@@ -184,7 +184,7 @@ Namespace Views
             Me.gridNative.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
             Me.gridNative.BackgroundColor = System.Drawing.SystemColors.Window
             Me.gridNative.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-            Me.gridNative.ColumnHeadersHeight = 29
+            Me.gridNative.ColumnHeadersHeight = 25
             Me.gridNative.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colNativeObject, Me.colNativePath, Me.colNativeBrowse})
             Me.gridNative.Dock = System.Windows.Forms.DockStyle.Fill
             Me.gridNative.Location = New System.Drawing.Point(0, 4)
@@ -193,6 +193,30 @@ Namespace Views
             Me.gridNative.RowHeadersWidth = 51
             Me.gridNative.Size = New System.Drawing.Size(402, 435)
             Me.gridNative.TabIndex = 0
+            '
+            'colNativeObject
+            '
+            Me.colNativeObject.FillWeight = 133.9572!
+            Me.colNativeObject.HeaderText = "Business Object"
+            Me.colNativeObject.MinimumWidth = 6
+            Me.colNativeObject.Name = "colNativeObject"
+            Me.colNativeObject.ReadOnly = True
+            '
+            'colNativePath
+            '
+            Me.colNativePath.FillWeight = 133.9572!
+            Me.colNativePath.HeaderText = "File Path"
+            Me.colNativePath.MinimumWidth = 6
+            Me.colNativePath.Name = "colNativePath"
+            '
+            'colNativeBrowse
+            '
+            Me.colNativeBrowse.FillWeight = 32.08556!
+            Me.colNativeBrowse.HeaderText = ""
+            Me.colNativeBrowse.MinimumWidth = 6
+            Me.colNativeBrowse.Name = "colNativeBrowse"
+            Me.colNativeBrowse.Text = "..."
+            Me.colNativeBrowse.UseColumnTextForButtonValue = True
             '
             'tvNative
             '
@@ -250,14 +274,6 @@ Namespace Views
             Me.gridUDO.Size = New System.Drawing.Size(470, 435)
             Me.gridUDO.TabIndex = 0
             '
-            'tvUDO
-            '
-            Me.tvUDO.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.tvUDO.Location = New System.Drawing.Point(8, 4)
-            Me.tvUDO.Name = "tvUDO"
-            Me.tvUDO.Size = New System.Drawing.Size(466, 435)
-            Me.tvUDO.TabIndex = 0
-            '
             'colUDOObject
             '
             Me.colUDOObject.FillWeight = 133.9572!
@@ -272,6 +288,7 @@ Namespace Views
             Me.colUDOPath.HeaderText = "File Path"
             Me.colUDOPath.MinimumWidth = 6
             Me.colUDOPath.Name = "colUDOPath"
+            Me.colUDOPath.ReadOnly = True
             '
             'colUDOBrowse
             '
@@ -279,32 +296,17 @@ Namespace Views
             Me.colUDOBrowse.HeaderText = ""
             Me.colUDOBrowse.MinimumWidth = 6
             Me.colUDOBrowse.Name = "colUDOBrowse"
+            Me.colUDOBrowse.ReadOnly = True
             Me.colUDOBrowse.Text = "..."
             Me.colUDOBrowse.UseColumnTextForButtonValue = True
             '
-            'colNativeObject
+            'tvUDO
             '
-            Me.colNativeObject.FillWeight = 133.9572!
-            Me.colNativeObject.HeaderText = "Business Object"
-            Me.colNativeObject.MinimumWidth = 6
-            Me.colNativeObject.Name = "colNativeObject"
-            Me.colNativeObject.ReadOnly = True
-            '
-            'colNativePath
-            '
-            Me.colNativePath.FillWeight = 133.9572!
-            Me.colNativePath.HeaderText = "File Path"
-            Me.colNativePath.MinimumWidth = 6
-            Me.colNativePath.Name = "colNativePath"
-            '
-            'colNativeBrowse
-            '
-            Me.colNativeBrowse.FillWeight = 32.08556!
-            Me.colNativeBrowse.HeaderText = ""
-            Me.colNativeBrowse.MinimumWidth = 6
-            Me.colNativeBrowse.Name = "colNativeBrowse"
-            Me.colNativeBrowse.Text = "..."
-            Me.colNativeBrowse.UseColumnTextForButtonValue = True
+            Me.tvUDO.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.tvUDO.Location = New System.Drawing.Point(8, 4)
+            Me.tvUDO.Name = "tvUDO"
+            Me.tvUDO.Size = New System.Drawing.Size(466, 435)
+            Me.tvUDO.TabIndex = 0
             '
             'UploadFiles
             '

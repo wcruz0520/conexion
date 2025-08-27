@@ -142,6 +142,7 @@
     <Compile Include="Mapeos\MappingNative.vb" />
     <Compile Include="Mapeos\MappingUDOs.vb" />
     <Compile Include="Mapeos\NativeCategory.vb" />
+    <Compile Include="Mapeos\UDOCategories.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
