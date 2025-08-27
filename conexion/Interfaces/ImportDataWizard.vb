@@ -23,6 +23,10 @@
 
     Private Sub btnSiguiente_Click(sender As Object, e As EventArgs) Handles btnSiguiente.Click
         If indiceActual < vistas.Count - 1 Then
+            Dim upload = TryCast(vistas(indiceActual), Views.UploadFiles)
+            If upload IsNot Nothing Then
+                SubMain.Upload_FilesUDO = upload.GetSelectedFilesUDOs()
+            End If
             indiceActual += 1
             MostrarVistaActual()
         Else

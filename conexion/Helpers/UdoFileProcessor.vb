@@ -117,7 +117,7 @@ Public Class UdoFileProcessor
             'query = $"SELECT 1 FROM \"{table.Replace("\"", "\"\"")}\" WHERE \"Code\" = '{code.Replace("'", "''")}'"
             query = ""
         Else
-            query = $"SELECT 1 FROM {table} WHERE Code = '{code.Replace("'", "''")}'"
+            query = $"SELECT 1 FROM ""{table}"" WHERE Code = '{code.Replace("'", "''")}'"
         End If
 
         rs.DoQuery(query)

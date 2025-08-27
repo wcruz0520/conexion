@@ -34,7 +34,7 @@ Namespace Views
                 "csv (Semicolon delimited)",
                 "txt (Tab delimited)"
             })
-            cboFileType.SelectedIndex = 0
+            cboFileType.SelectedIndex = 2
 
             ' Eventos
             AddHandler gridNative.CellContentClick, AddressOf gridNative_CellContentClick
