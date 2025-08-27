@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Recursos\LogoSS.png" />
+    <None Include="Recursos\LogoSS_redim.png" />
     <Content Include="Recursos\puntorojo.png" />
     <None Include="Recursos\puntorojo2.png" />
     <Content Include="Recursos\puntoverde.png" />

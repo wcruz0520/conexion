@@ -68,9 +68,15 @@ Partial Class PrincipalForm
         '
         'lblPartner
         '
+        Me.lblPartner.BackColor = System.Drawing.Color.Transparent
+        Me.lblPartner.Image = Global.conexion.My.Resources.Resources.LogoSS_redim
+        Me.lblPartner.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.lblPartner.ImageTransparentColor = System.Drawing.Color.Transparent
         Me.lblPartner.Name = "lblPartner"
-        Me.lblPartner.Size = New System.Drawing.Size(86, 20)
+        Me.lblPartner.RightToLeftAutoMirrorImage = True
+        Me.lblPartner.Size = New System.Drawing.Size(192, 20)
         Me.lblPartner.Text = "Powered by"
+        Me.lblPartner.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         '
         'lblLogo
         '
@@ -84,7 +90,7 @@ Partial Class PrincipalForm
         Me.topStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLogOff, Me.ToolStripSeparator1, Me.btnImport})
         Me.topStrip.Location = New System.Drawing.Point(0, 0)
         Me.topStrip.Name = "topStrip"
-        Me.topStrip.Size = New System.Drawing.Size(1282, 27)
+        Me.topStrip.Size = New System.Drawing.Size(1282, 31)
         Me.topStrip.TabIndex = 4
         Me.topStrip.Text = "ToolStrip1"
         '
@@ -94,13 +100,13 @@ Partial Class PrincipalForm
         Me.btnLogOff.Image = CType(resources.GetObject("btnLogOff.Image"), System.Drawing.Image)
         Me.btnLogOff.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLogOff.Name = "btnLogOff"
-        Me.btnLogOff.Size = New System.Drawing.Size(29, 24)
+        Me.btnLogOff.Size = New System.Drawing.Size(29, 28)
         Me.btnLogOff.Text = "Log"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 31)
         '
         'btnImport
         '
@@ -108,7 +114,7 @@ Partial Class PrincipalForm
         Me.btnImport.Image = CType(resources.GetObject("btnImport.Image"), System.Drawing.Image)
         Me.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnImport.Name = "btnImport"
-        Me.btnImport.Size = New System.Drawing.Size(29, 24)
+        Me.btnImport.Size = New System.Drawing.Size(29, 28)
         Me.btnImport.Text = "Importar"
         '
         'PrincipalForm
