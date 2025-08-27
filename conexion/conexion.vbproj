@@ -199,6 +199,9 @@
     <EmbeddedResource Include="Interfaces\ImportDataWizard.resx">
       <DependentUpon>ImportDataWizard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\ProcessForm.resx">
+      <DependentUpon>ProcessForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrincipalForm.resx">
       <DependentUpon>PrincipalForm.vb</DependentUpon>
     </EmbeddedResource>

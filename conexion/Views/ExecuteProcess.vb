@@ -188,7 +188,7 @@ Namespace Views
         End Property
 
         Public Sub RunSimulation()
-            MessageBox.Show("Simulation executed.", "Run Simulation", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ProcessForm.Show()
         End Sub
     End Class
 End Namespace
