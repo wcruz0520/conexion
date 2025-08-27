@@ -41,9 +41,9 @@ Partial Class PrincipalForm
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblConnStatus, Me.lblServer, Me.lblUser, Me.lblPartner, Me.lblLogo})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 729)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 827)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1123, 26)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1282, 26)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -84,7 +84,7 @@ Partial Class PrincipalForm
         Me.topStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLogOff, Me.ToolStripSeparator1, Me.btnImport})
         Me.topStrip.Location = New System.Drawing.Point(0, 0)
         Me.topStrip.Name = "topStrip"
-        Me.topStrip.Size = New System.Drawing.Size(1123, 27)
+        Me.topStrip.Size = New System.Drawing.Size(1282, 27)
         Me.topStrip.TabIndex = 4
         Me.topStrip.Text = "ToolStrip1"
         '
@@ -116,7 +116,7 @@ Partial Class PrincipalForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(1123, 755)
+        Me.ClientSize = New System.Drawing.Size(1282, 853)
         Me.Controls.Add(Me.topStrip)
         Me.Controls.Add(Me.StatusStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle

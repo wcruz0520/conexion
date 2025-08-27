@@ -352,7 +352,14 @@ Namespace Views
 
                 Dim c As Integer = 0
                 While Not parser.EndOfData AndAlso c < maxRows
-                    dt.Rows.Add(parser.ReadFields())
+                    Dim fields = parser.ReadFields()
+                    If fields Is Nothing Then Exit While
+                    If fields.Length > dt.Columns.Count Then
+                        For i = dt.Columns.Count To fields.Length - 1
+                            dt.Columns.Add($"Col{i + 1}")
+                        Next
+                    End If
+                    dt.Rows.Add(fields)
                     c += 1
                 End While
             End Using
