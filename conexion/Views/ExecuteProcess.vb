@@ -191,6 +191,27 @@ Namespace Views
             Dim frm As New ProcessForm()
             frm.Show()
             frm.StartProcess()
+            Dim it = SubMain.Upload_FilesUDO.GetEnumerator()
+            While it.MoveNext()
+                Dim headerTable As String = it.Current.Key
+                Dim headerPath As String = it.Current.Value
+                If Not it.MoveNext() Then Exit While
+                Dim detailTable As String = it.Current.Key
+                Dim detailPath As String = it.Current.Value
+                UdoFileProcessor.ProcessSimulation(SubMain.oCompany, headerTable, detailTable, headerPath, detailPath)
+            End While
+        End Sub
+
+        Public Sub RunReal()
+            Dim it = SubMain.Upload_FilesUDO.GetEnumerator()
+            While it.MoveNext()
+                Dim headerTable As String = it.Current.Key
+                Dim headerPath As String = it.Current.Value
+                If Not it.MoveNext() Then Exit While
+                Dim detailTable As String = it.Current.Key
+                Dim detailPath As String = it.Current.Value
+                UdoFileProcessor.ProcessReal(SubMain.oCompany, headerTable, detailTable, headerPath, detailPath)
+            End While
         End Sub
     End Class
 End Namespace

@@ -12,14 +12,35 @@ Public Class UdoFileProcessor
     ''' <param name="detailTable">Name of the UDO detail table (e.g. @SS_REEMDET).</param>
     ''' <param name="headerFilePath">Path to the tab-delimited file containing header records.</param>
     ''' <param name="detailFilePath">Path to the tab-delimited file containing detail records.</param>
-    Public Shared Sub Process(company As Company,
-                              headerTable As String,
-                              detailTable As String,
-                              headerFilePath As String,
-                              detailFilePath As String)
+    Public Shared Sub ProcessReal(company As Company,
+                                 headerTable As String,
+                                 detailTable As String,
+                                 headerFilePath As String,
+                                 detailFilePath As String)
+
+        ProcessInternal(company, headerTable, detailTable, headerFilePath, detailFilePath, False)
+    End Sub
+
+    Public Shared Sub ProcessSimulation(company As Company,
+                                        headerTable As String,
+                                        detailTable As String,
+                                        headerFilePath As String,
+                                        detailFilePath As String)
+
+        ProcessInternal(company, headerTable, detailTable, headerFilePath, detailFilePath, True)
+    End Sub
+
+    Private Shared Sub ProcessInternal(company As Company,
+                                       headerTable As String,
+                                       detailTable As String,
+                                       headerFilePath As String,
+                                       detailFilePath As String,
+                                       simulate As Boolean)
 
         Dim headers As DataTable = LoadFile(headerFilePath)
         Dim details As DataTable = LoadFile(detailFilePath)
+
+        If simulate Then company.StartTransaction()
 
         For Each row As DataRow In headers.Rows
             Dim code As String = Convert.ToString(row("Code"))
@@ -58,6 +79,10 @@ Public Class UdoFileProcessor
 
             System.Runtime.InteropServices.Marshal.ReleaseComObject(service)
         Next
+
+        If simulate AndAlso company.InTransaction Then
+            company.EndTransaction(BoWfTransOpt.wf_RollBack)
+        End If
     End Sub
 
     Private Shared Function LoadFile(path As String) As DataTable

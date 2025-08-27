@@ -28,7 +28,10 @@
         Else
             Dim exec = TryCast(vistas(indiceActual), Views.ExecuteProcess)
             If exec IsNot Nothing Then
-                exec.RunSimulation()
+                Dim result = MessageBox.Show("¿Desea ejecutar la importación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    exec.RunReal()
+                End If
             End If
         End If
     End Sub
