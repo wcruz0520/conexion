@@ -69,7 +69,10 @@ Namespace Views
             tab.Controls.Remove(existingSplit)
             wrapper.Dock = DockStyle.Fill
             wrapper.Orientation = Orientation.Horizontal
-            wrapper.SplitterDistance = CInt(tab.Height * 0.6)
+            wrapper.SplitterDistance = tab.Height \ 2
+            AddHandler wrapper.SizeChanged, Sub(sender As Object, e As EventArgs)
+                                                wrapper.SplitterDistance = wrapper.Height \ 2
+                                            End Sub
             wrapper.Panel1.Controls.Add(existingSplit)
             wrapper.Panel2.Padding = New Padding(0, 8, 0, 0)
             previewTabs.Dock = DockStyle.Fill
