@@ -188,7 +188,9 @@ Namespace Views
         End Property
 
         Public Sub RunSimulation()
-            ProcessForm.Show()
+            Dim frm As New ProcessForm()
+            frm.Show()
+            frm.StartProcess()
         End Sub
     End Class
 End Namespace

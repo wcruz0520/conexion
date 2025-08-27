@@ -25,6 +25,11 @@
         If indiceActual < vistas.Count - 1 Then
             indiceActual += 1
             MostrarVistaActual()
+        Else
+            Dim exec = TryCast(vistas(indiceActual), Views.ExecuteProcess)
+            If exec IsNot Nothing Then
+                exec.RunSimulation()
+            End If
         End If
     End Sub
 
@@ -41,7 +46,9 @@
         vista.Dock = DockStyle.Fill
         panelPrincipal.Controls.Add(vista)
         btnAtras.Enabled = indiceActual > 0
-        btnSiguiente.Enabled = indiceActual < vistas.Count - 1
+        'btnSiguiente.Enabled = indiceActual < vistas.Count - 1
+        btnSiguiente.Enabled = True
+        btnSiguiente.Text = If(indiceActual < vistas.Count - 1, "Siguiente", "Ejecutar")
         btnRunSimulation.Visible = TypeOf vista Is Views.ExecuteProcess
     End Sub
 
