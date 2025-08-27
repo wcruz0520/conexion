@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ReturnTable.vb" />
+    <Compile Include="Helpers\UdoFileProcessor.vb" />
     <Compile Include="Interfaces\Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
