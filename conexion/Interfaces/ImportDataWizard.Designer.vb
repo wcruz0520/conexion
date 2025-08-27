@@ -25,6 +25,7 @@ Partial Class ImportDataWizard
         Me.panelPrincipal = New System.Windows.Forms.Panel()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.btnAtras = New System.Windows.Forms.Button()
+        Me.btnRunSimulation = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'panelPrincipal
@@ -36,7 +37,7 @@ Partial Class ImportDataWizard
         '
         'btnSiguiente
         '
-        Me.btnSiguiente.Location = New System.Drawing.Point(939, 608)
+        Me.btnSiguiente.Location = New System.Drawing.Point(917, 608)
         Me.btnSiguiente.Name = "btnSiguiente"
         Me.btnSiguiente.Size = New System.Drawing.Size(131, 33)
         Me.btnSiguiente.TabIndex = 4
@@ -45,18 +46,31 @@ Partial Class ImportDataWizard
         '
         'btnAtras
         '
-        Me.btnAtras.Location = New System.Drawing.Point(773, 608)
+        Me.btnAtras.Location = New System.Drawing.Point(745, 608)
         Me.btnAtras.Name = "btnAtras"
         Me.btnAtras.Size = New System.Drawing.Size(140, 33)
         Me.btnAtras.TabIndex = 3
         Me.btnAtras.Text = "Anterior"
         Me.btnAtras.UseVisualStyleBackColor = True
         '
+        'btnRunSimulation
+        '
+        Me.btnRunSimulation.BackColor = System.Drawing.Color.Green
+        Me.btnRunSimulation.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnRunSimulation.ForeColor = System.Drawing.SystemColors.Window
+        Me.btnRunSimulation.Location = New System.Drawing.Point(555, 608)
+        Me.btnRunSimulation.Name = "btnRunSimulation"
+        Me.btnRunSimulation.Size = New System.Drawing.Size(160, 33)
+        Me.btnRunSimulation.TabIndex = 5
+        Me.btnRunSimulation.Text = "Run Simulation"
+        Me.btnRunSimulation.UseVisualStyleBackColor = False
+        '
         'ImportDataWizard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1082, 653)
+        Me.Controls.Add(Me.btnRunSimulation)
         Me.Controls.Add(Me.btnSiguiente)
         Me.Controls.Add(Me.btnAtras)
         Me.Controls.Add(Me.panelPrincipal)
@@ -70,4 +84,5 @@ Partial Class ImportDataWizard
     Friend WithEvents panelPrincipal As Panel
     Friend WithEvents btnSiguiente As Button
     Friend WithEvents btnAtras As Button
+    Friend WithEvents btnRunSimulation As Button
 End Class

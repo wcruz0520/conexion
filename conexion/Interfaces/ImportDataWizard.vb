@@ -10,6 +10,7 @@
         indiceActual = 0
         MostrarVistaActual()
         Me.Text = "Asistente de importación de datos"
+        btnRunSimulation.Visible = False
     End Sub
 
     Private Sub btnAtras_Click(sender As Object, e As EventArgs) Handles btnAtras.Click
@@ -27,6 +28,12 @@
         End If
     End Sub
 
+    Private Sub btnRunSimulation_Click(sender As Object, e As EventArgs) Handles btnRunSimulation.Click
+        Dim exec = TryCast(vistas(indiceActual), Views.ExecuteProcess)
+        If exec IsNot Nothing Then
+            exec.RunSimulation()
+        End If
+    End Sub
     Private Sub MostrarVistaActual()
         panelPrincipal.Controls.Clear()
         Dim vista As UserControl = vistas(indiceActual)
@@ -34,5 +41,6 @@
         panelPrincipal.Controls.Add(vista)
         btnAtras.Enabled = indiceActual > 0
         btnSiguiente.Enabled = indiceActual < vistas.Count - 1
+        btnRunSimulation.Visible = TypeOf vista Is Views.ExecuteProcess
     End Sub
 End Class
