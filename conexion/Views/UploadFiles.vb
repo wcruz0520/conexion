@@ -10,7 +10,7 @@ Namespace Views
             TxtTab
         End Enum
 
-        Private ReadOnly _nativeObjects As New List(Of String)()
+        Private ReadOnly _nativeCategories As New List(Of NativeCategory)()
         Private ReadOnly _udoObjects As New List(Of String)()
 
         Public Sub New()
@@ -34,8 +34,8 @@ Namespace Views
             AddHandler tvUDO.AfterSelect, AddressOf tv_AfterSelect
 
             ' Dummy inicial (puedes llenar desde fuera con SetNativeObjects/SetUDOObjects)
-            If _nativeObjects.Count = 0 Then
-                _nativeObjects.AddRange(New String() {"Documents", "Document_Lines"})
+            If _nativeCategories.Count = 0 Then
+                _nativeCategories.AddRange(MappingNativeCategories.GetDefault())
             End If
             If _udoObjects.Count = 0 Then
                 _udoObjects.AddRange(New String() {"@UDO_HEADER", "@UDO_LINES"})
@@ -58,15 +58,20 @@ Namespace Views
         Private Sub BuildNative()
             tvNative.Nodes.Clear()
             Dim root = tvNative.Nodes.Add("Business Objects")
-            For Each s In _nativeObjects
-                root.Nodes.Add(s)
+            For Each cat In _nativeCategories
+                Dim catNode = root.Nodes.Add(cat.Name)
+                For Each s In cat.Objects
+                    catNode.Nodes.Add(s)
+                Next
             Next
             tvNative.ExpandAll()
 
             gridNative.Rows.Clear()
-            For Each s In _nativeObjects
-                Dim idx = gridNative.Rows.Add(s, "", "...")
-                gridNative.Rows(idx).Tag = s
+            For Each cat In _nativeCategories
+                For Each s In cat.Objects
+                    Dim idx = gridNative.Rows.Add(s, "", "...")
+                    gridNative.Rows(idx).Tag = s
+                Next
             Next
         End Sub
 
@@ -89,7 +94,7 @@ Namespace Views
         Private Sub tv_AfterSelect(sender As Object, e As TreeViewEventArgs)
             Dim tv = DirectCast(sender, TreeView)
             Dim grid As DataGridView = If(tv Is tvNative, gridNative, gridUDO)
-            If e.Node Is Nothing OrElse e.Node.Parent Is Nothing Then Return
+            If e.Node Is Nothing OrElse e.Node.Nodes.Count > 0 Then Return
             For Each r As DataGridViewRow In grid.Rows
                 If CStr(r.Cells(0).Value) = e.Node.Text Then
                     r.Selected = True
@@ -140,6 +145,12 @@ Namespace Views
             End Get
         End Property
 
+        Public Sub SetNativeObjects(categories As IEnumerable(Of NativeCategory))
+            _nativeCategories.Clear()
+            _nativeCategories.AddRange(categories)
+            BuildNative()
+        End Sub
+
         Public ReadOnly Property SelectedDelimiter As String
             Get
                 Select Case SelectedKind
@@ -152,8 +163,10 @@ Namespace Views
         End Property
 
         Public Sub SetNativeObjects(objs As IEnumerable(Of String))
-            _nativeObjects.Clear()
-            _nativeObjects.AddRange(objs)
+            _nativeCategories.Clear()
+            Dim cat As New NativeCategory("General")
+            cat.Objects.AddRange(objs)
+            _nativeCategories.Add(cat)
             BuildNative()
         End Sub
 
