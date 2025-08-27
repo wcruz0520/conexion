@@ -44,6 +44,7 @@
         Dim exec = TryCast(vistas(indiceActual), Views.ExecuteProcess)
         If exec IsNot Nothing Then
             exec.RunSimulation()
+            ErrorsForm.Show()
             'OpenMdiChild(Of ProcessForm)()
         End If
     End Sub
