@@ -1,6 +1,7 @@
 ﻿Imports SAPbobsCOM
 Imports Microsoft.VisualBasic.FileIO
 Imports System.Data
+Imports System.Globalization
 
 Public Class UdoFileProcessor
     ''' <summary>
@@ -51,9 +52,9 @@ Public Class UdoFileProcessor
 
             ' Header properties
             For Each col As DataColumn In headers.Columns
-                Dim value As String = Convert.ToString(row(col))
+                Dim value As String = Convert.ToString(row(col)).Trim()
                 If Not String.IsNullOrWhiteSpace(value) Then
-                    data.SetProperty(col.ColumnName, value)
+                    data.SetProperty(col.ColumnName, ParseValue(value))
                 End If
             Next
 
@@ -64,9 +65,9 @@ Public Class UdoFileProcessor
                 Dim line As GeneralData = lineCollection.Add()
                 For Each col As DataColumn In details.Columns
                     If col.ColumnName.Equals("Code", StringComparison.OrdinalIgnoreCase) Then Continue For
-                    Dim value As String = Convert.ToString(dRow(col))
+                    Dim value As String = Convert.ToString(dRow(col)).Trim()
                     If Not String.IsNullOrWhiteSpace(value) Then
-                        line.SetProperty(col.ColumnName, value)
+                        line.SetProperty(col.ColumnName, ParseValue(value))
                     End If
                 Next
             Next
@@ -124,5 +125,21 @@ Public Class UdoFileProcessor
         Dim exists As Boolean = rs.RecordCount > 0
         System.Runtime.InteropServices.Marshal.ReleaseComObject(rs)
         Return exists
+    End Function
+
+    Private Shared Function ParseValue(value As String) As Object
+        Dim intVal As Integer
+        Dim dblVal As Double
+        Dim dateVal As Date
+
+        If Integer.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, intVal) Then
+            Return intVal
+        ElseIf Double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, dblVal) Then
+            Return dblVal
+        ElseIf Date.TryParse(value, dateVal) Then
+            Return dateVal
+        End If
+
+        Return value
     End Function
 End Class
