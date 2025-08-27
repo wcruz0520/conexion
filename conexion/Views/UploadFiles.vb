@@ -15,9 +15,15 @@ Namespace Views
         Private ReadOnly _udoCategories As New List(Of UDOCategories)()
         Private ReadOnly _nativePaths As New Dictionary(Of String, Dictionary(Of String, String))(StringComparer.OrdinalIgnoreCase)
         Private ReadOnly _udoPaths As New Dictionary(Of String, Dictionary(Of String, String))(StringComparer.OrdinalIgnoreCase)
+        Private ReadOnly splitNativeMain As New SplitContainer()
+        Private ReadOnly splitUDOMain As New SplitContainer()
+        Private ReadOnly tabsNativePreview As New TabControl()
+        Private ReadOnly tabsUDOPreview As New TabControl()
 
         Public Sub New()
             InitializeComponent()
+            SetupSplitWithPreview(tabNative, splitNative, tabsNativePreview, splitNativeMain)
+            SetupSplitWithPreview(tabUDOs, splitUDO, tabsUDOPreview, splitUDOMain)
             SwapPanels(splitNative, tvNative, gridNative)
             SwapPanels(splitUDO, tvUDO, gridUDO)
             splitNative.SplitterDistance = splitNative.Width \ 2
@@ -56,6 +62,18 @@ Namespace Views
             split.Panel2.Controls.Clear()
             split.Panel2.Padding = New Padding(8, 4, 0, 0)
             split.Panel2.Controls.Add(right)
+        End Sub
+
+        Private Sub SetupSplitWithPreview(tab As TabPage, existingSplit As SplitContainer, previewTabs As TabControl, wrapper As SplitContainer)
+            tab.Controls.Remove(existingSplit)
+            wrapper.Dock = DockStyle.Fill
+            wrapper.Orientation = Orientation.Horizontal
+            wrapper.SplitterDistance = CInt(tab.Height * 0.6)
+            wrapper.Panel1.Controls.Add(existingSplit)
+            wrapper.Panel2.Padding = New Padding(0, 8, 0, 0)
+            previewTabs.Dock = DockStyle.Fill
+            wrapper.Panel2.Controls.Add(previewTabs)
+            tab.Controls.Add(wrapper)
         End Sub
         ' ========== Construcción de cada pestaña ==========
         Private Sub BuildNative()
@@ -145,6 +163,7 @@ Namespace Views
                     _nativePaths(objName) = paths
                 End If
                 paths(tbl) = _path
+                UpdatePreviewTab(tbl, False)
             End If
         End Sub
 
@@ -166,7 +185,32 @@ Namespace Views
                     _udoPaths(objName) = paths
                 End If
                 paths(tbl) = _path
+                UpdatePreviewTab(tbl, True)
             End If
+        End Sub
+
+        Private Sub UpdatePreviewTab(objName As String, fromUDOTab As Boolean)
+            Dim tabs = If(fromUDOTab, tabsUDOPreview, tabsNativePreview)
+            Dim target As TabPage = Nothing
+            For Each tp As TabPage In tabs.TabPages
+                If String.Equals(tp.Text, objName, StringComparison.OrdinalIgnoreCase) Then
+                    target = tp
+                    Exit For
+                End If
+            Next
+            If target Is Nothing Then
+                target = New TabPage(objName)
+                Dim g As New DataGridView()
+                g.Dock = DockStyle.Fill
+                g.ReadOnly = True
+                g.AllowUserToAddRows = False
+                g.AllowUserToDeleteRows = False
+                g.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                target.Controls.Add(g)
+                tabs.TabPages.Add(target)
+            End If
+            Dim dt = PreviewFirstRows(objName, fromUDOTab)
+            CType(target.Controls(0), DataGridView).DataSource = dt
         End Sub
 
         Private Function BrowseForSelected() As String
@@ -288,7 +332,10 @@ Namespace Views
 
             For Each row As DataGridViewRow In grid.Rows
                 If String.Equals(CStr(row.Cells(0).Value), objName, StringComparison.OrdinalIgnoreCase) Then
-                    path = CStr(row.Cells(1).Value) : Exit For
+                    Dim cell = row.Cells(1)
+                    path = TryCast(cell.Tag, String)
+                    If String.IsNullOrWhiteSpace(path) Then path = CStr(cell.Value)
+                    Exit For
                 End If
             Next
             If String.IsNullOrWhiteSpace(path) OrElse Not IO.File.Exists(path) Then Return dt
