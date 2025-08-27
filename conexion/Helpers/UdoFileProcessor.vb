@@ -31,6 +31,15 @@ Public Class UdoFileProcessor
         ProcessInternal(company, headerTable, detailTable, headerFilePath, detailFilePath, True)
     End Sub
 
+    Private Shared Sub LogError(code As String, message As String)
+        If ListadoErrores.ContainsKey(code) Then
+            ListadoErrores(code) &= Environment.NewLine & message
+        Else
+            ListadoErrores(code) = message
+        End If
+    End Sub
+
+
     Private Shared Sub ProcessInternal(company As Company,
                                        headerTable As String,
                                        detailTable As String,
@@ -41,8 +50,8 @@ Public Class UdoFileProcessor
         Dim headers As DataTable = LoadFile(headerFilePath)
         Dim details As DataTable = LoadFile(detailFilePath)
 
-        ListadoErrores = New Dictionary(Of String, String)
-        ListadoErrores.Clear()
+        'ListadoErrores = New Dictionary(Of String, String)
+        'ListadoErrores.Clear()
 
         If simulate Then company.StartTransaction()
 
@@ -61,7 +70,8 @@ Public Class UdoFileProcessor
                         data.SetProperty(col.ColumnName, value)
                     Catch ex As Exception
                         'MessageBox.Show($"Error setting property '{col.ColumnName}' with value '{value}', {ex}")
-                        ListadoErrores.Add(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
+                        'ListadoErrores.Add(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
+                        LogError(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
                         Continue For
                     End Try
                 End If
@@ -80,20 +90,25 @@ Public Class UdoFileProcessor
                             line.SetProperty(col.ColumnName, ParseValue(value))
                         Catch ex As Exception
                             'MessageBox.Show($"Error setting property '{col.ColumnName}' with value '{value}' for record '{code}', {ex}")
-                            ListadoErrores.Add(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
+                            'ListadoErrores.Add(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
+                            LogError(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
                             Continue For
                         End Try
                     End If
                 Next
             Next
 
-            If RecordExists(company, headerTable, code) Then
-                service.Update(data)
-            Else
-                service.Add(data)
-            End If
-
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(service)
+            Try
+                If RecordExists(company, headerTable, code) Then
+                    service.Update(data)
+                Else
+                    service.Add(data)
+                End If
+            Catch ex As Exception
+                LogError(code, $"Error al procesar el registro {code} en la tabla {headerTable}, {ex.Message}")
+            Finally
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(service)
+            End Try
         Next
 
         If simulate AndAlso company.InTransaction Then

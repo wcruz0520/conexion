@@ -191,6 +191,7 @@ Namespace Views
             Dim frm As New ProcessForm()
             frm.Show()
             frm.StartProcess()
+            SubMain.ListadoErrores.Clear()
             Dim it = SubMain.Upload_FilesUDO.GetEnumerator()
             While it.MoveNext()
                 Dim headerTable As String = it.Current.Key
@@ -198,11 +199,16 @@ Namespace Views
                 If Not it.MoveNext() Then Exit While
                 Dim detailTable As String = it.Current.Key
                 Dim detailPath As String = it.Current.Value
-                UdoFileProcessor.ProcessSimulation(SubMain.oCompany, headerTable, detailTable, headerPath, detailPath)
+                Try
+                    UdoFileProcessor.ProcessSimulation(SubMain.oCompany, headerTable, detailTable, headerPath, detailPath)
+                Catch ex As Exception
+                    AddError(headerTable, $"Error al procesar la simulación: {ex.Message}")
+                End Try
             End While
         End Sub
 
         Public Sub RunReal()
+            SubMain.ListadoErrores.Clear()
             Dim it = SubMain.Upload_FilesUDO.GetEnumerator()
             While it.MoveNext()
                 Dim headerTable As String = it.Current.Key
@@ -210,8 +216,20 @@ Namespace Views
                 If Not it.MoveNext() Then Exit While
                 Dim detailTable As String = it.Current.Key
                 Dim detailPath As String = it.Current.Value
-                UdoFileProcessor.ProcessReal(SubMain.oCompany, headerTable, detailTable, headerPath, detailPath)
+                Try
+                    UdoFileProcessor.ProcessReal(SubMain.oCompany, headerTable, detailTable, headerPath, detailPath)
+                Catch ex As Exception
+                    AddError(headerTable, $"Error al procesar los datos reales: {ex.Message}")
+                End Try
             End While
+        End Sub
+
+        Private Sub AddError(key As String, message As String)
+            If SubMain.ListadoErrores.ContainsKey(key) Then
+                SubMain.ListadoErrores(key) &= Environment.NewLine & message
+            Else
+                SubMain.ListadoErrores(key) = message
+            End If
         End Sub
     End Class
 End Namespace
