@@ -174,7 +174,7 @@ Namespace Views
             Me.splitNative.Panel2.Controls.Add(Me.tvNative)
             Me.splitNative.Panel2.Padding = New System.Windows.Forms.Padding(8, 4, 0, 0)
             Me.splitNative.Size = New System.Drawing.Size(956, 439)
-            Me.splitNative.SplitterDistance = 478
+            Me.splitNative.SplitterDistance = 410
             Me.splitNative.TabIndex = 0
             '
             'gridNative
@@ -191,7 +191,7 @@ Namespace Views
             Me.gridNative.Name = "gridNative"
             Me.gridNative.RowHeadersVisible = False
             Me.gridNative.RowHeadersWidth = 51
-            Me.gridNative.Size = New System.Drawing.Size(470, 435)
+            Me.gridNative.Size = New System.Drawing.Size(402, 435)
             Me.gridNative.TabIndex = 0
             '
             'tvNative
@@ -199,7 +199,7 @@ Namespace Views
             Me.tvNative.Dock = System.Windows.Forms.DockStyle.Fill
             Me.tvNative.Location = New System.Drawing.Point(8, 4)
             Me.tvNative.Name = "tvNative"
-            Me.tvNative.Size = New System.Drawing.Size(466, 435)
+            Me.tvNative.Size = New System.Drawing.Size(534, 435)
             Me.tvNative.TabIndex = 0
             '
             'tabUDOs

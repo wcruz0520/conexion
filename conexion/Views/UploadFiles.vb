@@ -15,6 +15,8 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
+            SwapPanels(splitNative, tvNative, gridNative)
+            SwapPanels(splitUDO, tvUDO, gridUDO)
             splitNative.SplitterDistance = splitNative.Width \ 2
             splitUDO.SplitterDistance = splitUDO.Width \ 2
             ' Opciones exactamente como en la UI de referencia
@@ -43,6 +45,15 @@ Namespace Views
             BuildUDO()
         End Sub
 
+        Private Sub SwapPanels(split As SplitContainer, left As Control, right As Control)
+            split.Panel1.Controls.Clear()
+            split.Panel1.Padding = New Padding(0, 4, 8, 0)
+            split.Panel1.Controls.Add(left)
+
+            split.Panel2.Controls.Clear()
+            split.Panel2.Padding = New Padding(8, 4, 0, 0)
+            split.Panel2.Controls.Add(right)
+        End Sub
         ' ========== Construcción de cada pestaña ==========
         Private Sub BuildNative()
             tvNative.Nodes.Clear()
