@@ -19,17 +19,11 @@ Namespace Views
         Friend WithEvents splitNative As SplitContainer
         Friend WithEvents tvNative As TreeView
         Friend WithEvents gridNative As DataGridView
-        Friend WithEvents colNativeObject As DataGridViewTextBoxColumn
-        Friend WithEvents colNativePath As DataGridViewTextBoxColumn
-        Friend WithEvents colNativeBrowse As DataGridViewButtonColumn
 
         ' UDOs
         Friend WithEvents splitUDO As SplitContainer
         Friend WithEvents tvUDO As TreeView
         Friend WithEvents gridUDO As DataGridView
-        Friend WithEvents colUDOObject As DataGridViewTextBoxColumn
-        Friend WithEvents colUDOPath As DataGridViewTextBoxColumn
-        Friend WithEvents colUDOBrowse As DataGridViewButtonColumn
 
         <System.Diagnostics.DebuggerNonUserCode()>
         Protected Overrides Sub Dispose(disposing As Boolean)
@@ -52,17 +46,17 @@ Namespace Views
             Me.tabNative = New System.Windows.Forms.TabPage()
             Me.splitNative = New System.Windows.Forms.SplitContainer()
             Me.gridNative = New System.Windows.Forms.DataGridView()
-            Me.colNativeObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
-            Me.colNativePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
-            Me.colNativeBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
             Me.tvNative = New System.Windows.Forms.TreeView()
             Me.tabUDOs = New System.Windows.Forms.TabPage()
             Me.splitUDO = New System.Windows.Forms.SplitContainer()
             Me.gridUDO = New System.Windows.Forms.DataGridView()
+            Me.tvUDO = New System.Windows.Forms.TreeView()
             Me.colUDOObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colUDOPath = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.colUDOBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
-            Me.tvUDO = New System.Windows.Forms.TreeView()
+            Me.colNativeObject = New System.Windows.Forms.DataGridViewTextBoxColumn()
+            Me.colNativePath = New System.Windows.Forms.DataGridViewTextBoxColumn()
+            Me.colNativeBrowse = New System.Windows.Forms.DataGridViewButtonColumn()
             Me.panelHeader.SuspendLayout()
             Me.panelTop.SuspendLayout()
             Me.tabs.SuspendLayout()
@@ -127,7 +121,7 @@ Namespace Views
             '
             Me.lblSelect.AutoSize = True
             Me.lblSelect.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.lblSelect.Location = New System.Drawing.Point(324, 13)
+            Me.lblSelect.Location = New System.Drawing.Point(432, 13)
             Me.lblSelect.Name = "lblSelect"
             Me.lblSelect.Size = New System.Drawing.Size(152, 17)
             Me.lblSelect.TabIndex = 0
@@ -136,9 +130,9 @@ Namespace Views
             'cboFileType
             '
             Me.cboFileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-            Me.cboFileType.Location = New System.Drawing.Point(470, 9)
+            Me.cboFileType.Location = New System.Drawing.Point(560, 9)
             Me.cboFileType.Name = "cboFileType"
-            Me.cboFileType.Size = New System.Drawing.Size(250, 24)
+            Me.cboFileType.Size = New System.Drawing.Size(171, 24)
             Me.cboFileType.TabIndex = 1
             '
             'tabs
@@ -171,6 +165,7 @@ Namespace Views
             '
             'splitNative.Panel1
             '
+            Me.splitNative.Panel1.BackColor = System.Drawing.Color.White
             Me.splitNative.Panel1.Controls.Add(Me.gridNative)
             Me.splitNative.Panel1.Padding = New System.Windows.Forms.Padding(0, 4, 8, 0)
             '
@@ -187,6 +182,8 @@ Namespace Views
             Me.gridNative.AllowUserToAddRows = False
             Me.gridNative.AllowUserToDeleteRows = False
             Me.gridNative.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+            Me.gridNative.BackgroundColor = System.Drawing.SystemColors.Window
+            Me.gridNative.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
             Me.gridNative.ColumnHeadersHeight = 29
             Me.gridNative.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colNativeObject, Me.colNativePath, Me.colNativeBrowse})
             Me.gridNative.Dock = System.Windows.Forms.DockStyle.Fill
@@ -196,27 +193,6 @@ Namespace Views
             Me.gridNative.RowHeadersWidth = 51
             Me.gridNative.Size = New System.Drawing.Size(470, 435)
             Me.gridNative.TabIndex = 0
-            '
-            'colNativeObject
-            '
-            Me.colNativeObject.HeaderText = "Business Object"
-            Me.colNativeObject.MinimumWidth = 6
-            Me.colNativeObject.Name = "colNativeObject"
-            Me.colNativeObject.ReadOnly = True
-            '
-            'colNativePath
-            '
-            Me.colNativePath.HeaderText = "File Path"
-            Me.colNativePath.MinimumWidth = 6
-            Me.colNativePath.Name = "colNativePath"
-            '
-            'colNativeBrowse
-            '
-            Me.colNativeBrowse.HeaderText = ""
-            Me.colNativeBrowse.MinimumWidth = 6
-            Me.colNativeBrowse.Name = "colNativeBrowse"
-            Me.colNativeBrowse.Text = "..."
-            Me.colNativeBrowse.UseColumnTextForButtonValue = True
             '
             'tvNative
             '
@@ -232,7 +208,7 @@ Namespace Views
             Me.tabUDOs.Location = New System.Drawing.Point(4, 25)
             Me.tabUDOs.Name = "tabUDOs"
             Me.tabUDOs.Padding = New System.Windows.Forms.Padding(8)
-            Me.tabUDOs.Size = New System.Drawing.Size(972, 431)
+            Me.tabUDOs.Size = New System.Drawing.Size(972, 455)
             Me.tabUDOs.TabIndex = 1
             Me.tabUDOs.Text = "UDOs"
             Me.tabUDOs.UseVisualStyleBackColor = True
@@ -252,7 +228,7 @@ Namespace Views
             '
             Me.splitUDO.Panel2.Controls.Add(Me.tvUDO)
             Me.splitUDO.Panel2.Padding = New System.Windows.Forms.Padding(8, 4, 0, 0)
-            Me.splitUDO.Size = New System.Drawing.Size(956, 415)
+            Me.splitUDO.Size = New System.Drawing.Size(956, 439)
             Me.splitUDO.SplitterDistance = 478
             Me.splitUDO.TabIndex = 0
             '
@@ -261,18 +237,30 @@ Namespace Views
             Me.gridUDO.AllowUserToAddRows = False
             Me.gridUDO.AllowUserToDeleteRows = False
             Me.gridUDO.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+            Me.gridUDO.BackgroundColor = System.Drawing.SystemColors.Window
+            Me.gridUDO.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
             Me.gridUDO.ColumnHeadersHeight = 29
             Me.gridUDO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colUDOObject, Me.colUDOPath, Me.colUDOBrowse})
             Me.gridUDO.Dock = System.Windows.Forms.DockStyle.Fill
             Me.gridUDO.Location = New System.Drawing.Point(0, 4)
             Me.gridUDO.Name = "gridUDO"
+            Me.gridUDO.ReadOnly = True
             Me.gridUDO.RowHeadersVisible = False
             Me.gridUDO.RowHeadersWidth = 51
-            Me.gridUDO.Size = New System.Drawing.Size(470, 411)
+            Me.gridUDO.Size = New System.Drawing.Size(470, 435)
             Me.gridUDO.TabIndex = 0
+            '
+            'tvUDO
+            '
+            Me.tvUDO.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.tvUDO.Location = New System.Drawing.Point(8, 4)
+            Me.tvUDO.Name = "tvUDO"
+            Me.tvUDO.Size = New System.Drawing.Size(466, 435)
+            Me.tvUDO.TabIndex = 0
             '
             'colUDOObject
             '
+            Me.colUDOObject.FillWeight = 133.9572!
             Me.colUDOObject.HeaderText = "Business Object"
             Me.colUDOObject.MinimumWidth = 6
             Me.colUDOObject.Name = "colUDOObject"
@@ -280,25 +268,43 @@ Namespace Views
             '
             'colUDOPath
             '
+            Me.colUDOPath.FillWeight = 133.9572!
             Me.colUDOPath.HeaderText = "File Path"
             Me.colUDOPath.MinimumWidth = 6
             Me.colUDOPath.Name = "colUDOPath"
             '
             'colUDOBrowse
             '
+            Me.colUDOBrowse.FillWeight = 32.08556!
             Me.colUDOBrowse.HeaderText = ""
             Me.colUDOBrowse.MinimumWidth = 6
             Me.colUDOBrowse.Name = "colUDOBrowse"
             Me.colUDOBrowse.Text = "..."
             Me.colUDOBrowse.UseColumnTextForButtonValue = True
             '
-            'tvUDO
+            'colNativeObject
             '
-            Me.tvUDO.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.tvUDO.Location = New System.Drawing.Point(8, 4)
-            Me.tvUDO.Name = "tvUDO"
-            Me.tvUDO.Size = New System.Drawing.Size(466, 411)
-            Me.tvUDO.TabIndex = 0
+            Me.colNativeObject.FillWeight = 133.9572!
+            Me.colNativeObject.HeaderText = "Business Object"
+            Me.colNativeObject.MinimumWidth = 6
+            Me.colNativeObject.Name = "colNativeObject"
+            Me.colNativeObject.ReadOnly = True
+            '
+            'colNativePath
+            '
+            Me.colNativePath.FillWeight = 133.9572!
+            Me.colNativePath.HeaderText = "File Path"
+            Me.colNativePath.MinimumWidth = 6
+            Me.colNativePath.Name = "colNativePath"
+            '
+            'colNativeBrowse
+            '
+            Me.colNativeBrowse.FillWeight = 32.08556!
+            Me.colNativeBrowse.HeaderText = ""
+            Me.colNativeBrowse.MinimumWidth = 6
+            Me.colNativeBrowse.Name = "colNativeBrowse"
+            Me.colNativeBrowse.Text = "..."
+            Me.colNativeBrowse.UseColumnTextForButtonValue = True
             '
             'UploadFiles
             '
@@ -328,5 +334,12 @@ Namespace Views
             Me.ResumeLayout(False)
 
         End Sub
+
+        Friend WithEvents colUDOObject As DataGridViewTextBoxColumn
+        Friend WithEvents colUDOPath As DataGridViewTextBoxColumn
+        Friend WithEvents colUDOBrowse As DataGridViewButtonColumn
+        Friend WithEvents colNativeObject As DataGridViewTextBoxColumn
+        Friend WithEvents colNativePath As DataGridViewTextBoxColumn
+        Friend WithEvents colNativeBrowse As DataGridViewButtonColumn
     End Class
 End Namespace
