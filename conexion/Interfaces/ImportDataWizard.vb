@@ -32,6 +32,7 @@
         Dim exec = TryCast(vistas(indiceActual), Views.ExecuteProcess)
         If exec IsNot Nothing Then
             exec.RunSimulation()
+            'OpenMdiChild(Of ProcessForm)()
         End If
     End Sub
     Private Sub MostrarVistaActual()
@@ -43,4 +44,32 @@
         btnSiguiente.Enabled = indiceActual < vistas.Count - 1
         btnRunSimulation.Visible = TypeOf vista Is Views.ExecuteProcess
     End Sub
+
+    Private Sub OpenMdiChild(Of T As {Form, New})()
+        ' ¿ya está abierto?
+        For Each f As Form In Me.MdiChildren
+            If TypeOf f Is T Then
+                If f.WindowState = FormWindowState.Minimized Then f.WindowState = FormWindowState.Normal
+                f.Activate()
+                Return
+            End If
+        Next
+
+        ' crear y configurar el hijo
+        Dim child As New T()
+        child.MdiParent = Me
+        child.StartPosition = FormStartPosition.CenterParent
+
+        ' Estilo “diálogo” (se mueve dentro del contenedor y no sale de los bordes)
+        child.FormBorderStyle = FormBorderStyle.FixedDialog
+        child.MaximizeBox = False
+        child.MinimizeBox = False
+        child.ShowInTaskbar = False
+        ' --- Si prefieres que NO se mueva en absoluto (pantalla pegada) ---
+        'child.FormBorderStyle = FormBorderStyle.None
+        'child.WindowState = FormWindowState.Maximized
+
+        child.Show()
+    End Sub
+
 End Class

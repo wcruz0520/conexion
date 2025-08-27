@@ -13,3 +13,4 @@ C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.ImportDat
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.Login.resources
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.vbproj.AssemblyReference.cache
 C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.Views.UploadFiles.resources
+C:\Users\William\source\repos\conexion\conexion\obj\x64\Debug\conexion.ProcessForm.resources

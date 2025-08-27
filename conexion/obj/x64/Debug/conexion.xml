@@ -82,5 +82,16 @@ conexion
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="M:conexion.UdoFileProcessor.Process(SAPbobsCOM.Company,System.String,System.String,System.String,System.String)">
+ <summary>
+ Imports UDO records using tab-delimited header and detail files. The first row of each file
+ must contain column names. Records are created or updated based on the Code field.
+ </summary>
+ <param name="company">Connected SAP Business One company object.</param>
+ <param name="headerTable">Name of the UDO header table (e.g. @SS_REEMCAB).</param>
+ <param name="detailTable">Name of the UDO detail table (e.g. @SS_REEMDET).</param>
+ <param name="headerFilePath">Path to the tab-delimited file containing header records.</param>
+ <param name="detailFilePath">Path to the tab-delimited file containing detail records.</param>
+</member>
 </members>
 </doc>
