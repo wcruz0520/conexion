@@ -42,6 +42,7 @@ Namespace Views
             AddHandler tvNative.AfterSelect, AddressOf tv_AfterSelect
             AddHandler tvUDO.AfterSelect, AddressOf tv_AfterSelect
 
+
             ' Dummy inicial (puedes llenar desde fuera con SetNativeObjects/SetUDOObjects)
             If _nativeCategories.Count = 0 Then
                 _nativeCategories.AddRange(MappingNativeCategories.GetDefault())
