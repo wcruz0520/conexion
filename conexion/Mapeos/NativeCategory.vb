@@ -11,7 +11,7 @@ End Class
 Public Module MappingNativeCategories
     Public Function GetDefault() As IEnumerable(Of NativeCategory)
         Return New List(Of NativeCategory) From {
-            New NativeCategory("Ventas", "Factura de ventas")
+            New NativeCategory("Ventas", "Factura de deudores")
         }
     End Function
 End Module

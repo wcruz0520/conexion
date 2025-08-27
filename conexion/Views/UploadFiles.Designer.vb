@@ -197,7 +197,7 @@ Namespace Views
             'colNativeObject
             '
             Me.colNativeObject.FillWeight = 133.9572!
-            Me.colNativeObject.HeaderText = "Business Object"
+            Me.colNativeObject.HeaderText = "Tabla"
             Me.colNativeObject.MinimumWidth = 6
             Me.colNativeObject.Name = "colNativeObject"
             Me.colNativeObject.ReadOnly = True
@@ -277,7 +277,7 @@ Namespace Views
             'colUDOObject
             '
             Me.colUDOObject.FillWeight = 133.9572!
-            Me.colUDOObject.HeaderText = "Business Object"
+            Me.colUDOObject.HeaderText = "Tabla"
             Me.colUDOObject.MinimumWidth = 6
             Me.colUDOObject.Name = "colUDOObject"
             Me.colUDOObject.ReadOnly = True

@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.FileIO
+Imports System.IO
 
 Namespace Views
     Partial Class UploadFiles
@@ -69,8 +70,10 @@ Namespace Views
             gridNative.Rows.Clear()
             For Each cat In _nativeCategories
                 For Each s In cat.Objects
-                    Dim idx = gridNative.Rows.Add(s, "", "...")
-                    gridNative.Rows(idx).Tag = s
+                    For Each tbl In MappingUploadTables.GetNativeTables(s)
+                        Dim idx = gridNative.Rows.Add(tbl, "", "...")
+                        gridNative.Rows(idx).Tag = s
+                    Next
                 Next
             Next
         End Sub
@@ -89,8 +92,10 @@ Namespace Views
             gridUDO.Rows.Clear()
             For Each cat In _udoCategories
                 For Each s In cat.Objects
-                    Dim idx = gridUDO.Rows.Add(s, "", "...")
-                    gridUDO.Rows(idx).Tag = s
+                    For Each tbl In MappingUploadTables.GetUDOTables(s)
+                        Dim idx = gridUDO.Rows.Add(tbl, "", "...")
+                        gridUDO.Rows(idx).Tag = s
+                    Next
                 Next
             Next
         End Sub
@@ -101,7 +106,7 @@ Namespace Views
             Dim grid As DataGridView = If(tv Is tvNative, gridNative, gridUDO)
             If e.Node Is Nothing OrElse e.Node.Nodes.Count > 0 Then Return
             For Each r As DataGridViewRow In grid.Rows
-                If CStr(r.Cells(0).Value) = e.Node.Text Then
+                If CStr(r.Tag.Value) = e.Node.Text Then
                     r.Selected = True
                     grid.CurrentCell = r.Cells(1)
                     Exit For
@@ -112,13 +117,21 @@ Namespace Views
         Private Sub gridNative_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
             If e.RowIndex < 0 OrElse e.ColumnIndex <> gridNative.Columns("colNativeBrowse").Index Then Return
             Dim path = BrowseForSelected()
-            If path IsNot Nothing Then gridNative.Rows(e.RowIndex).Cells("colNativePath").Value = path
+            If path IsNot Nothing Then
+                Dim cell = gridNative.Rows(e.RowIndex).Cells("colNativePath")
+                cell.Tag = path
+                cell.Value = path.ToString
+            End If
         End Sub
 
         Private Sub gridUDO_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
             If e.RowIndex < 0 OrElse e.ColumnIndex <> gridUDO.Columns("colUDOBrowse").Index Then Return
             Dim path = BrowseForSelected()
-            If path IsNot Nothing Then gridUDO.Rows(e.RowIndex).Cells("colUDOPath").Value = path
+            If path IsNot Nothing Then
+                Dim cell = gridUDO.Rows(e.RowIndex).Cells("colUDOPath")
+                cell.Tag = path
+                cell.Value = path.ToString
+            End If
         End Sub
 
         Private Function BrowseForSelected() As String
