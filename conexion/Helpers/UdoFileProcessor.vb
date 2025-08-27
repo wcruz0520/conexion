@@ -41,6 +41,9 @@ Public Class UdoFileProcessor
         Dim headers As DataTable = LoadFile(headerFilePath)
         Dim details As DataTable = LoadFile(detailFilePath)
 
+        ListadoErrores = New Dictionary(Of String, String)
+        ListadoErrores.Clear()
+
         If simulate Then company.StartTransaction()
 
         For Each row As DataRow In headers.Rows
@@ -54,7 +57,13 @@ Public Class UdoFileProcessor
             For Each col As DataColumn In headers.Columns
                 Dim value As String = Convert.ToString(row(col)).Trim()
                 If Not String.IsNullOrWhiteSpace(value) Then
-                    data.SetProperty(col.ColumnName, ParseValue(value))
+                    Try
+                        data.SetProperty(col.ColumnName, value)
+                    Catch ex As Exception
+                        'MessageBox.Show($"Error setting property '{col.ColumnName}' with value '{value}', {ex}")
+                        ListadoErrores.Add(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
+                        Continue For
+                    End Try
                 End If
             Next
 
@@ -67,7 +76,13 @@ Public Class UdoFileProcessor
                     If col.ColumnName.Equals("Code", StringComparison.OrdinalIgnoreCase) Then Continue For
                     Dim value As String = Convert.ToString(dRow(col)).Trim()
                     If Not String.IsNullOrWhiteSpace(value) Then
-                        line.SetProperty(col.ColumnName, ParseValue(value))
+                        Try
+                            line.SetProperty(col.ColumnName, ParseValue(value))
+                        Catch ex As Exception
+                            'MessageBox.Show($"Error setting property '{col.ColumnName}' with value '{value}' for record '{code}', {ex}")
+                            ListadoErrores.Add(code, $"Error en la tabla {headerTable.ToString} en la columna {col.ColumnName} ingresando el valor {value} en el registro {code}, {ex.Message}")
+                            Continue For
+                        End Try
                     End If
                 Next
             Next

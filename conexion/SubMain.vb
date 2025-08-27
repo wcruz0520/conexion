@@ -18,6 +18,7 @@ Module SubMain
     Public Upload_SelectedDelimiter As String
     Public Upload_FilesNative As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
     Public Upload_FilesUDO As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
+    Public ListadoErrores As New Dictionary(Of String, String)
 
     <STAThread()>
     Sub Main()
