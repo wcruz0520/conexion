@@ -23,7 +23,16 @@
 
     Private Sub btnSiguiente_Click(sender As Object, e As EventArgs) Handles btnSiguiente.Click
         If indiceActual < vistas.Count - 1 Then
+            'Dim upload = TryCast(vistas(indiceActual), Views.UploadFiles)
+            ' dentro de btnSiguiente_Click, justo antes de cambiar de vista:
             Dim upload = TryCast(vistas(indiceActual), Views.UploadFiles)
+            If upload IsNot Nothing Then
+                SubMain.Upload_FilesUDO = upload.GetSelectedFilesUDOs()
+                SubMain.Upload_FilesNative = upload.GetSelectedFilesNative()
+                SubMain.Upload_SelectedFileKind = upload.SelectedKind
+                SubMain.Upload_SelectedDelimiter = upload.SelectedDelimiter
+            End If
+
             If upload IsNot Nothing Then
                 SubMain.Upload_FilesUDO = upload.GetSelectedFilesUDOs()
             End If
@@ -44,7 +53,7 @@
         Dim exec = TryCast(vistas(indiceActual), Views.ExecuteProcess)
         If exec IsNot Nothing Then
             exec.RunSimulation()
-            ErrorsForm.Show()
+            'ErrorsForm.Show()
             'OpenMdiChild(Of ProcessForm)()
         End If
     End Sub

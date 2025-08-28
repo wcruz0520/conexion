@@ -120,7 +120,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ImportEngines.vb" />
     <Compile Include="Helpers\ReturnTable.vb" />
+    <Compile Include="Helpers\SapSchemaHelper.vb" />
     <Compile Include="Helpers\UdoFileProcessor.vb" />
     <Compile Include="Interfaces\ErrorsForm.Designer.vb">
       <DependentUpon>ErrorsForm.vb</DependentUpon>
@@ -144,6 +146,18 @@
       <DependentUpon>ProcessForm.vb</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ProcessForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ProgressForm.Designer.vb">
+      <DependentUpon>ProgressForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\ProgressForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ResultsForm.Designer.vb">
+      <DependentUpon>ResultsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\ResultsForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Mapeos\MappingNative.vb" />
@@ -176,6 +190,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SubMain.vb" />
+    <Compile Include="Utils\ImportModels.vb" />
     <Compile Include="Utils\Log.vb" />
     <Compile Include="Views\ExecuteProcess.vb">
       <SubType>UserControl</SubType>

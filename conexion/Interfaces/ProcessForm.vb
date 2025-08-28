@@ -54,4 +54,29 @@ Public Class ProcessForm
         cts?.Cancel()
         Me.Close()
     End Sub
+
+    ' === NUEVO: inicialización manual del progreso ===
+    Public Sub Initialize(total As Integer, Optional isSimulation As Boolean = True)
+        ' No usamos el loop “fake”; esto lo controla ExecuteProcess
+        If cts IsNot Nothing Then
+            Try : cts.Dispose() : Catch : End Try
+            cts = Nothing
+        End If
+
+        InProcessPercent = 0
+        ErrorsDetected = 0
+        SetProcessed(0, total)
+
+        ' Título del form según modo
+        Me.Text = If(isSimulation, "Simulación de carga", "Ejecución real de carga")
+    End Sub
+
+    ' === NUEVO: avance manual provocado por ExecuteProcess ===
+    Public Sub Advance(current As Integer, total As Integer, errors As Integer)
+        If total <= 0 Then total = 1
+        Dim pct As Integer = CInt(Math.Min(100, Math.Round(current * 100.0 / total)))
+        InProcessPercent = pct
+        ErrorsDetected = errors
+        SetProcessed(current, total)
+    End Sub
 End Class

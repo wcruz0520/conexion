@@ -37,8 +37,11 @@ Public Class ErrorsForm
         DataGridView1.Rows.Clear()
         Dim index As Integer = 1
         For Each kvp In SubMain.ListadoErrores
-            DataGridView1.Rows.Add(index, kvp.Key, kvp.Value)
-            index += 1
+            Dim messages = kvp.Value.Split({Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+            For Each msg In messages
+                DataGridView1.Rows.Add(index, kvp.Key, msg)
+                index += 1
+            Next
         Next
     End Sub
 
